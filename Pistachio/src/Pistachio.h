@@ -2,7 +2,7 @@
 
 // For use by Pistachio Applications
 
-#include <stdio.h>
+#include "Pistachio/Log.h"
 #include "Pistachio/Application.h"
 
 // ---Entry Point------------------------

@@ -1,0 +1,3 @@
+[submodule "Pistachio/vendor/spdlog"]
+	path = Pistachio/vendor/spdlog
+	url = https://github.com/gabime/spdlog

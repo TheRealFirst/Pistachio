@@ -57,6 +57,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>PA_PLATFORM_WINDOWS;PA_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Pistachio\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -71,6 +72,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>PA_PLATFORM_WINDOWS;PA_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Pistachio\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -83,9 +85,11 @@
     <Folder Include="src" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pistachio\Log.cpp" />
     <ClCompile Include="src\Pistachio\Application.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pistachio\Log.h" />
     <ClInclude Include="src\Pistachio.h" />
     <ClInclude Include="src\Pistachio\Application.h" />
     <ClInclude Include="src\Pistachio\Core.h" />

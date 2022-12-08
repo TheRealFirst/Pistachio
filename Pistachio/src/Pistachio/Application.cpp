@@ -1,7 +1,8 @@
+#include "papch.h"
 #include "Application.h"
 
-#include "Pistachio/Events/ApplicationEvent.h"
 #include "Pistachio/Log.h"
+#include "Pistachio/Events/ApplicationEvent.h"
 
 namespace Pistachio 
 {

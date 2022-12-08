@@ -4,6 +4,9 @@
     <Filter Include="Pistachio">
       <UniqueIdentifier>{A93913EA-15A4-C760-5EE2-7806CA8BA5B5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pistachio\Events">
+      <UniqueIdentifier>{304cae88-ac1b-486c-be08-cafee65812ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pistachio.h" />
@@ -18,6 +21,18 @@
     </ClInclude>
     <ClInclude Include="src\Pistachio\Log.h">
       <Filter>Pistachio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\Events\MouseEvent.h">
+      <Filter>Pistachio\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\Events\ApplicationEvent.h">
+      <Filter>Pistachio\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\Events\Event.h">
+      <Filter>Pistachio\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\Events\KeyEvent.h">
+      <Filter>Pistachio\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,6 @@
 ﻿#pragma once
 
-#include <functional>
-#include <string>
-
-#include "C:/dev/Pistachio/Pistachio/src/Pistachio/Core.h"
+#include "Pistachio/Core.h"
 
 
 namespace Pistachio {
@@ -54,23 +51,26 @@ namespace Pistachio {
 		{
 			return GetCategoryFlags() & category;
 		}
+	protected:
+		bool m_Handled = false;
 	};
 
 	class EventDispatcher
 	{
+		template<typename  T>
+		using EventFn = std::function<bool(T&)>;
 	public:
 		EventDispatcher(Event& event)
 			: m_Event(event)
 		{
 		}
 		
-		// F will be deduced by the compiler
-		template<typename T, typename F>
-		bool Dispatch(const F& func)
+		template<typename T>
+		bool Dispatch(EventFn<T> func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.Handled |= func(static_cast<T&>(m_Event));
+				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

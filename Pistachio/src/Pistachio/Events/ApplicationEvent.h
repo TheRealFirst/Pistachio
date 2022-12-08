@@ -1,8 +1,6 @@
 ﻿#pragma once
 
-#include "C:/dev/Pistachio/Pistachio/src/Pistachio/Events/Event.h"
-
-#include <sstream>
+#include "Pistachio/Events/Event.h"
 
 
 namespace Pistachio {

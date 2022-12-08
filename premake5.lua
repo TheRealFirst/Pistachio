@@ -17,6 +17,9 @@ project "Pistachio"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+ 	
+ 	pchheader "papch.h"
+ 	pchsource "Pistacho/src/papch.cpp"
 
 	files
 	{
@@ -26,6 +29,7 @@ project "Pistachio"
 
 	includedirs
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 

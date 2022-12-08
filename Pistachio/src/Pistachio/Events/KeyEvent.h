@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include "sstream"
-
 namespace Pistachio {
     class PISTACHIO_API KeyEvent : public Event
     {

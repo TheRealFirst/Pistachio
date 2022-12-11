@@ -2,3 +2,6 @@
 	path = Pistachio/vendor/spdlog
 	url = https://github.com/gabime/spdlog
 
+[submodule "Pistachio/vendor/glfw"]
+	path = Pistachio/vendor/glfw
+	url = https://github.com/TheRealFirst/glfw

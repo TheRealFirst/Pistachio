@@ -19,7 +19,7 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Pistachio</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -161,11 +161,14 @@
     <ClInclude Include="src\Pistachio\Events\KeyEvent.h" />
     <ClInclude Include="src\Pistachio\Events\MouseEvent.h" />
     <ClInclude Include="src\Pistachio\Log.h" />
+    <ClInclude Include="src\Pistachio\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\papch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pistachio\Application.cpp" />
     <ClCompile Include="src\Pistachio\Log.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\papch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

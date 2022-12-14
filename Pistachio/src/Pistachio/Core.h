@@ -10,4 +10,13 @@
 	#error Pistachio only supports Windows!
 #endif
 
+#ifdef PA_ENABLE_ASSERTS
+	#define PA_ASSERT(x, ...) { if(!(x)) { PA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define PA_CORE_ASSERT(x, ...) { if(!(x)) { PA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+	#define Pa_ASSERT(x, ...)
+	#define PA_CORE_ASSERT(x, ...)
+#endif
+
+
 #define BIT(x) (1 << x)

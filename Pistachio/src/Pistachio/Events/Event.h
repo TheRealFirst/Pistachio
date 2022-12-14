@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Pistachio/Core.h"
+#include "papch.h"
 
 
 namespace Pistachio {

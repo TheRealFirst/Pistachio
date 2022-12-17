@@ -62,7 +62,7 @@ project "Pistachio"
 		}
 
  	filter "configurations:Debug"
- 		defines "PA_DEBUG"
+ 		defines "PA_DEBUG" 
  		buildoptions "/MDd"
  		symbols "On"
 

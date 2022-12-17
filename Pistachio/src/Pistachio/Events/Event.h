@@ -38,6 +38,7 @@ namespace Pistachio {
 
 	class PISTACHIO_API Event
 	{
+		friend class EventDispatcher;
 	public:
 		virtual ~Event() = default;
 

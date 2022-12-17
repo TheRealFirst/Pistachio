@@ -37,6 +37,12 @@
     <ClInclude Include="src\Pistachio\Events\MouseEvent.h">
       <Filter>Pistachio\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pistachio\Layer.h">
+      <Filter>Pistachio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\LayerStack.h">
+      <Filter>Pistachio</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pistachio\Log.h">
       <Filter>Pistachio</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pistachio\Application.cpp">
+      <Filter>Pistachio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pistachio\Layer.cpp">
+      <Filter>Pistachio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pistachio\LayerStack.cpp">
       <Filter>Pistachio</Filter>
     </ClCompile>
     <ClCompile Include="src\Pistachio\Log.cpp">

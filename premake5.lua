@@ -61,17 +61,20 @@ project "Pistachio"
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/sandbox")
 		}
 
-	filter "configurations:Debug"
-		defines "PA_DEBUG"
-		symbols "On"
-		
-	filter "configurations:Release"
-		defines "PA_RELEASE"
-		optimize "On"
+ 	filter "configurations:Debug"
+ 		defines "PA_DEBUG"
+ 		buildoptions "/MDd"
+ 		symbols "On"
 
-	filter "configurations:Dist"
-		defines "PA_DIST"
-		optimize "On"
+ 	filter "configurations:Release"
+ 		defines "PA_RELEASE"
+ 		buildoptions "/MD"
+ 		optimize "On"
+
+ 	filter "configurations:Dist"
+ 		defines "PA_DIST"
+ 		buildoptions "/MD"
+ 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
@@ -109,14 +112,17 @@ project "Sandbox"
 		}
 
 
-	filter "configurations:Debug"
-		defines "PA_DEBUG"
-		symbols "On"
-		
-	filter "configurations:Release"
-		defines "PA_RELEASE"
-		optimize "On"
+ 	filter "configurations:Debug"
+ 		defines "PA_DEBUG"
+ 		buildoptions "/MDd"
+ 		symbols "On"
 
-	filter "configurations:Dist"
-		defines "PA_DIST"
-		optimize "On"
+ 	filter "configurations:Release"
+ 		defines "PA_RELEASE"
+ 		buildoptions "/MD"
+ 		optimize "On"
+
+ 	filter "configurations:Dist"
+ 		defines "PA_DIST"
+ 		buildoptions "/MD"
+ 		optimize "On"

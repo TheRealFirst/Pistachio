@@ -7,7 +7,7 @@ public:
 
 	void OnUpdate() override
 	{
-		PA_INFO("ExampleLayer::Update");
+		PA_INFO("ExampleLayer::Update"); 
 	}
 
 	void OnEvent(Pistachio::Event& event) override

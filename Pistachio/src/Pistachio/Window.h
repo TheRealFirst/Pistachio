@@ -13,7 +13,7 @@ namespace Pistachio
         unsigned int Width;
         unsigned int Height;
 
-        WindowProbs(const std::string& title = "Pistachio Engine", unsigned int width = 1280, unsigned int height = 720)
+        WindowProbs(const std::string& title = "Pistachio Engine", unsigned int width = 3840, unsigned int height = 2160)
             : Title(title), Width(width), Height(height)
         {
             

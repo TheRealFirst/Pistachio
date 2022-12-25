@@ -5,6 +5,8 @@
 
 #include "glad/glad.h"
 
+#include "Input.h"
+
 namespace Pistachio 
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -31,6 +33,8 @@ namespace Pistachio
 
 			for(Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+			
+			
 			m_Window->OnUpdate();
 		}
 	}

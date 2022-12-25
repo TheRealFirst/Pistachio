@@ -84,7 +84,6 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -95,7 +94,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\Pistachio\Pistachio.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Pistachio\Pistachio.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Pistachio\Pistachio.dll ..\bin\Debug-windows-x86_64\sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Pistachio\Pistachio.dll ..\bin\Debug-windows-x86_64\sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Pistachio\Pistachio.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Pistachio\Pistachio.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Pistachio\Pistachio.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -111,7 +110,6 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -123,7 +121,7 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\Pistachio\Pistachio.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Pistachio\Pistachio.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Pistachio\Pistachio.dll ..\bin\Release-windows-x86_64\sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Pistachio\Pistachio.dll ..\bin\Release-windows-x86_64\sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\Pistachio\Pistachio.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Pistachio\Pistachio.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Pistachio\Pistachio.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -139,7 +137,6 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -151,7 +148,7 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\Pistachio\Pistachio.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Pistachio\Pistachio.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Pistachio\Pistachio.dll ..\bin\Dist-windows-x86_64\sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Pistachio\Pistachio.dll ..\bin\Dist-windows-x86_64\sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Pistachio\Pistachio.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Pistachio\Pistachio.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Pistachio\Pistachio.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -164,11 +161,15 @@
     <ClInclude Include="src\Pistachio\Events\KeyEvent.h" />
     <ClInclude Include="src\Pistachio\Events\MouseEvent.h" />
     <ClInclude Include="src\Pistachio\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Pistachio\Input.h" />
+    <ClInclude Include="src\Pistachio\KeyCodes.h" />
     <ClInclude Include="src\Pistachio\Layer.h" />
     <ClInclude Include="src\Pistachio\LayerStack.h" />
     <ClInclude Include="src\Pistachio\Log.h" />
+    <ClInclude Include="src\Pistachio\MouseButtonCodes.h" />
     <ClInclude Include="src\Pistachio\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\papch.h" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <ClCompile Include="src\Pistachio\LayerStack.cpp" />
     <ClCompile Include="src\Pistachio\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\papch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -191,7 +193,7 @@
     <ProjectReference Include="vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\ImGui\ImGui.vcxproj">
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>

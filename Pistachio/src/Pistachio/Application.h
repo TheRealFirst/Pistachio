@@ -7,7 +7,7 @@
 #include "Pistachio/Events/Event.h"
 #include "Pistachio/Events/ApplicationEvent.h"
 
-#include "Window.h"
+#include "Pistachio/ImGui/ImGuiLayer.h"
 
 namespace Pistachio 
 {
@@ -34,6 +34,7 @@ namespace Pistachio
 		bool OnWindowClosed(WindowCloseEvent& e);
 		
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

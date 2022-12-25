@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef PA_PLATFORM_WINDOWS
+#if PA_DYNAMIC_LINK
 	#ifdef PA_BUILD_DLL
 		#define PISTACHIO_API __declspec(dllexport)
 	#else
 		#define PISTACHIO_API __declspec(dllimport)
 	#endif
+#else
+	#define PISTACHIO_API
+#endif
 #else
 	#error Pistachio only supports Windows!
 #endif

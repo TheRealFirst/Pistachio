@@ -16,12 +16,12 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Pistachio/vendor/GLFW/include"
 IncludeDir["Glad"] = "Pistachio/vendor/Glad/include"
 IncludeDir["ImGui"] = "Pistachio/vendor/imgui"
+IncludeDir["glm"] = "Pistachio/vendor/glm"
 
  group "Dependencies"
  	include "Pistachio/vendor/GLFW"
  	include "Pistachio/vendor/Glad"
  	include "Pistachio/vendor/imgui"
-
  group ""
 
  
@@ -42,7 +42,9 @@ project "Pistachio"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -51,7 +53,8 @@ project "Pistachio"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -111,7 +114,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Pistachio/vendor/spdlog/include",
-		"Pistachio/src"
+		"Pistachio/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links

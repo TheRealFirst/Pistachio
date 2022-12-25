@@ -1,7 +1,5 @@
 #include <Pistachio.h>
 
-#include "../../Pistachio/vendor/ImGui/imgui.h"
-
 class ExampleLayer : public Pistachio::Layer
 {
 public:

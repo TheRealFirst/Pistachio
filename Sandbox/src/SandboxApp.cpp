@@ -1,5 +1,7 @@
 #include <Pistachio.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Pistachio::Layer
 {
 public:
@@ -7,6 +9,13 @@ public:
 
 	void OnUpdate() override
 	{
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Pistachio::Event& event) override

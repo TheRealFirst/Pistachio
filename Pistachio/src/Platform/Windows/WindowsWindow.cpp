@@ -5,8 +5,7 @@
 #include "Pistachio/Events/KeyEvent.h"
 #include "Pistachio/Events/MouseEvent.h"
 
-#include "glad/glad.h"
-#include "Pistachio/Core.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Pistachio
 {
@@ -52,9 +51,10 @@ namespace Pistachio
 
         
         m_Window = glfwCreateWindow((int)probs.Width, (int)probs.Height, m_Data.Title.c_str(), nullptr, nullptr);
-        glfwMakeContextCurrent(m_Window);
-        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        PA_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+        m_Context = new OpenGLContext(m_Window);
+        m_Context->Init();
+        
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
 
@@ -157,7 +157,7 @@ namespace Pistachio
     void WindowsWindow::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(m_Window);
+        m_Context->SwapBuffers();
     }
 
     void WindowsWindow::SetVSync(bool enabled)

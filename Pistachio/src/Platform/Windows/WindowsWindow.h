@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Pistachio/Window.h"
+#include "Pistachio/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -28,6 +29,7 @@ namespace Pistachio
         virtual void Shutdown();
     private:
         GLFWwindow* m_Window;
+        GraphicsContext* m_Context;
 
         struct WindowData
         {

@@ -159,6 +159,7 @@
     <ClInclude Include="src\Pistachio\Log.h" />
     <ClInclude Include="src\Pistachio\MouseButtonCodes.h" />
     <ClInclude Include="src\Pistachio\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Pistachio\Renderer\Shader.h" />
     <ClInclude Include="src\Pistachio\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
@@ -588,6 +589,7 @@
     <ClCompile Include="src\Pistachio\Layer.cpp" />
     <ClCompile Include="src\Pistachio\LayerStack.cpp" />
     <ClCompile Include="src\Pistachio\Log.cpp" />
+    <ClCompile Include="src\Pistachio\Renderer\Shader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

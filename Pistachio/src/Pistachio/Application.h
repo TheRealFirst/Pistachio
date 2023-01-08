@@ -8,6 +8,7 @@
 #include "Pistachio/Events/ApplicationEvent.h"
 
 #include "Pistachio/ImGui/ImGuiLayer.h"
+#include "Renderer/Shader.h"
 
 namespace Pistachio 
 {
@@ -41,6 +42,7 @@ namespace Pistachio
 		unsigned int m_VertexArray;
 		unsigned int m_VertexBuffer;
 		unsigned int m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 
 	private:
 		static Application* s_Instance;

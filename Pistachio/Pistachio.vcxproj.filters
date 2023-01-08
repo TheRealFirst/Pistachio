@@ -96,6 +96,9 @@
     <ClInclude Include="src\Pistachio\Renderer\GraphicsContext.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\Shader.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pistachio\Window.h">
       <Filter>src\Pistachio</Filter>
     </ClInclude>
@@ -1378,6 +1381,9 @@
     </ClCompile>
     <ClCompile Include="src\Pistachio\Log.cpp">
       <Filter>src\Pistachio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\Shader.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>

@@ -93,7 +93,13 @@
     <ClInclude Include="src\Pistachio\MouseButtonCodes.h">
       <Filter>src\Pistachio</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\Buffer.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pistachio\Renderer\GraphicsContext.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\Renderer.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pistachio\Renderer\Shader.h">
@@ -101,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="src\Pistachio\Window.h">
       <Filter>src\Pistachio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1382,8 +1391,17 @@
     <ClCompile Include="src\Pistachio\Log.cpp">
       <Filter>src\Pistachio</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\Buffer.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\Renderer.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pistachio\Renderer\Shader.cpp">
       <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>

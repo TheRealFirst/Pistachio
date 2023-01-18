@@ -10,8 +10,8 @@ namespace Pistachio
     {
         switch (Renderer::GetAPI())
         {
-        case RendererAPI::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
-        case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+        case RendererAPI::API::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
+        case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
         }
 
         PA_CORE_ASSERT(false, "Unknown RendererAPI");
@@ -22,8 +22,8 @@ namespace Pistachio
     {
         switch (Renderer::GetAPI())
         {
-        case RendererAPI::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
-        case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, size);
+        case RendererAPI::API::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
+        case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, size);
         }
 
         PA_CORE_ASSERT(false, "Unknown RendererAPI")

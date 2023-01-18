@@ -99,10 +99,19 @@
     <ClInclude Include="src\Pistachio\Renderer\GraphicsContext.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\RenderCommand.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pistachio\Renderer\Renderer.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\RendererAPI.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pistachio\Renderer\Shader.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\VertexArray.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pistachio\Window.h">
@@ -112,6 +121,12 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -1394,16 +1409,31 @@
     <ClCompile Include="src\Pistachio\Renderer\Buffer.cpp">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\RenderCommand.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pistachio\Renderer\Renderer.cpp">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\RendererAPI.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pistachio\Renderer\Shader.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\VertexArray.cpp">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">

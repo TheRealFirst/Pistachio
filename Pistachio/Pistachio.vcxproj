@@ -160,6 +160,7 @@
     <ClInclude Include="src\Pistachio\MouseButtonCodes.h" />
     <ClInclude Include="src\Pistachio\Renderer\Buffer.h" />
     <ClInclude Include="src\Pistachio\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Pistachio\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Pistachio\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Pistachio\Renderer\Renderer.h" />
     <ClInclude Include="src\Pistachio\Renderer\RendererAPI.h" />
@@ -598,6 +599,7 @@
     <ClCompile Include="src\Pistachio\LayerStack.cpp" />
     <ClCompile Include="src\Pistachio\Log.cpp" />
     <ClCompile Include="src\Pistachio\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Pistachio\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Pistachio\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Pistachio\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Pistachio\Renderer\RendererAPI.cpp" />

@@ -8,7 +8,7 @@
 #include "Pistachio/Events/ApplicationEvent.h"
 
 #include "Pistachio/ImGui/ImGuiLayer.h"
-#include "Renderer/Buffer.h"
+#include "Renderer/OrthographicCamera.h"
 #include "Renderer/Shader.h"
 #include "Renderer/VertexArray.h"
 
@@ -46,6 +46,8 @@ namespace Pistachio
 
 		std::shared_ptr<VertexArray> m_SquareVA;
 		std::shared_ptr<Shader> m_BlueShader;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

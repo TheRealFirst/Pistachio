@@ -146,6 +146,7 @@
     <ClInclude Include="src\Pistachio.h" />
     <ClInclude Include="src\Pistachio\Application.h" />
     <ClInclude Include="src\Pistachio\Core.h" />
+    <ClInclude Include="src\Pistachio\Core\Timestep.h" />
     <ClInclude Include="src\Pistachio\EntryPoint.h" />
     <ClInclude Include="src\Pistachio\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Pistachio\Events\Event.h" />

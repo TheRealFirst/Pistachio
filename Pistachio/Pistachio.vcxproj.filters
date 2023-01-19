@@ -99,6 +99,9 @@
     <ClInclude Include="src\Pistachio\Renderer\GraphicsContext.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pistachio\Renderer\OrthographicCamera.h">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pistachio\Renderer\RenderCommand.h">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClInclude>
@@ -1407,6 +1410,9 @@
       <Filter>src\Pistachio</Filter>
     </ClCompile>
     <ClCompile Include="src\Pistachio\Renderer\Buffer.cpp">
+      <Filter>src\Pistachio\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pistachio\Renderer\OrthographicCamera.cpp">
       <Filter>src\Pistachio\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Pistachio\Renderer\RenderCommand.cpp">

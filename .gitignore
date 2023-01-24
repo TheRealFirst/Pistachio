@@ -19,3 +19,4 @@ Intermediates/
 Pistachio/vendor/VulkanSDK
 Pistachio-Editor/assets/cache
 scripts/__pycache__
+Pistachio/Pistachio.vcxproj.filters

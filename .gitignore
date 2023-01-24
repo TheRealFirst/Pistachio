@@ -9,6 +9,7 @@ Intermediates/
 
 # Visual Studio files and folder
 .vs/
+.idea/
 **.sln
 **.vcxproj
 **.vcxproj.filters

@@ -141,6 +141,9 @@
       <Project>{A93913EA-15A4-C760-5EE2-7806CA8BA5B5}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\textures" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -128,16 +128,13 @@ public:
 			
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec2 a_TexCoord;
-
 			uniform mat4 u_ViewProjection;
 			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord; 
-
+			out vec2 v_TexCoord;
 			void main()
 			{
 				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -145,11 +142,9 @@ public:
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
-
 			in vec2 v_TexCoord;
-
+			
 			uniform sampler2D u_Texture;
-
 			void main()
 			{
 				color = texture(u_Texture, v_TexCoord);
@@ -159,7 +154,7 @@ public:
 		m_TextureShader.reset(Pistachio::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = Pistachio::Texture2D::Create("assets/textures/Checkerboard.png");
-		m_CircleTexture = Pistachio::Texture2D::Create("assets/textures/ChernoLogo.png");
+		m_TransparentTexture = Pistachio::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Pistachio::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Pistachio::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -208,7 +203,7 @@ public:
 
 		m_Texture->Bind();
 		Pistachio::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-		m_CircleTexture->Bind();
+		m_TransparentTexture->Bind();
 		Pistachio::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
@@ -237,7 +232,7 @@ private:
 	Pistachio::Ref<Pistachio::VertexArray> m_SquareVA;
 
 	Pistachio::Ref<Pistachio::Texture2D> m_Texture;
-	Pistachio::Ref<Pistachio::Texture2D> m_CircleTexture;
+	Pistachio::Ref<Pistachio::Texture2D> m_TransparentTexture;
 
 	Pistachio::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

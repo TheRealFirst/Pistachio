@@ -1,37 +1,17 @@
 #include <Pistachio.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
+#include "imgui/imgui.h"
+
 #include "glm/gtc/type_ptr.hpp"
 #include "glm/gtx/transform.hpp"
-#include "imgui/imgui.h"
-#include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public Pistachio::Layer
 {
 public:
 	ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
-		m_VertexArray.reset(Pistachio::VertexArray::Create());
-
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
-		};
-
-		Pistachio::Ref<Pistachio::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Pistachio::VertexBuffer::Create(vertices, sizeof(vertices)));
-		Pistachio::BufferLayout layout = {
-			{ Pistachio::ShaderDataType::Float3, "a_Position" },
-			{ Pistachio::ShaderDataType::Float4, "a_Color" }
-		};
-		vertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(vertexBuffer);
-
-		uint32_t indices[3] = { 0, 1, 2 };
-		Pistachio::Ref<Pistachio::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Pistachio::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_VertexArray->SetIndexBuffer(indexBuffer);
-
 		m_SquareVA.reset(Pistachio::VertexArray::Create());
 
 		float squareVertices[5 * 4] = {
@@ -53,41 +33,6 @@ public:
 		Pistachio::Ref<Pistachio::IndexBuffer> squareIB;
 		squareIB.reset(Pistachio::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
-
-		std::string vertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-		std::string fragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-			in vec3 v_Position;
-			in vec4 v_Color;
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
-
-		m_Shader.reset(Pistachio::Shader::Create(vertexSrc, fragmentSrc));
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -121,15 +66,15 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(Pistachio::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = Pistachio::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 		
-		m_TextureShader.reset(Pistachio::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Pistachio::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_TransparentTexture = Pistachio::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Pistachio::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Pistachio::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Pistachio::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Pistachio::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Pistachio::Timestep ts) override
@@ -173,13 +118,12 @@ public:
 			}
 		}
 
-		m_Texture->Bind();
-		Pistachio::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-		m_TransparentTexture->Bind();
-		Pistachio::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 
-		// Triangle
-		// Pistachio::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Pistachio::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_TransparentTexture->Bind();
+		Pistachio::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Pistachio::Renderer::EndScene();
 	}
@@ -197,10 +141,8 @@ public:
 
 	
 private:
-	Pistachio::Ref<Pistachio::Shader> m_Shader;
-	Pistachio::Ref<Pistachio::VertexArray> m_VertexArray;
-
-	Pistachio::Ref<Pistachio::Shader> m_FlatColorShader, m_TextureShader;
+	Pistachio::ShaderLibrary m_ShaderLibrary;
+	Pistachio::Ref<Pistachio::Shader> m_FlatColorShader;
 	Pistachio::Ref<Pistachio::VertexArray> m_SquareVA;
 
 	Pistachio::Ref<Pistachio::Texture2D> m_Texture;

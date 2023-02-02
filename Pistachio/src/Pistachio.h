@@ -11,6 +11,7 @@
 #include "Pistachio/Input.h"
 #include "Pistachio/KeyCodes.h"
 #include "Pistachio/MouseButtonCodes.h"
+#include "Pistachio/OrthographicCameraController.h"
 
 #include "Pistachio/ImGui/ImGuiLayer.h"
 
@@ -26,5 +27,6 @@
 #include "Pistachio/Renderer/OrthographicCamera.h"
 // --------------------------------------
 
+// ---Entry Point------------------------
 #include "Pistachio/Entrypoint.h"
 // --------------------------------------

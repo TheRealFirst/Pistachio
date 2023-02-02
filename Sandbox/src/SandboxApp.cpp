@@ -10,7 +10,7 @@
 class ExampleLayer : public Pistachio::Layer
 {
 public:
-	ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+	ExampleLayer() : Layer("Example"), m_CameraController(16.0f / 9.0f)
 	{
 		m_SquareVA.reset(Pistachio::VertexArray::Create());
 
@@ -33,40 +33,8 @@ public:
 		Pistachio::Ref<Pistachio::IndexBuffer> squareIB;
 		squareIB.reset(Pistachio::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
-
-		std::string flatColorShaderVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-
-			void main()
-			{
-				v_Position = a_Position;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string flatColorShaderFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(u_Color, 1.0f);
-			}
-		)";
-
-		m_FlatColorShader = Pistachio::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+		
+		m_FlatColorShader = Pistachio::Shader::Create("assets/shaders/FlatColor.glsl");
 		
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
@@ -79,29 +47,14 @@ public:
 
 	void OnUpdate(Pistachio::Timestep ts) override
 	{
-		if(Pistachio::Input::IsKeyPressed(PA_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if(Pistachio::Input::IsKeyPressed(PA_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-		
-		if(Pistachio::Input::IsKeyPressed(PA_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if(Pistachio::Input::IsKeyPressed(PA_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-		if(Pistachio::Input::IsKeyPressed(PA_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		else if(Pistachio::Input::IsKeyPressed(PA_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
-		
+		// Render
 		Pistachio::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Pistachio::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Pistachio::Renderer::BeginScene(m_Camera);
+		Pistachio::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -135,8 +88,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Pistachio::Event& event) override
+	void OnEvent(Pistachio::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
 	}
 
 	
@@ -148,12 +102,7 @@ private:
 	Pistachio::Ref<Pistachio::Texture2D> m_Texture;
 	Pistachio::Ref<Pistachio::Texture2D> m_TransparentTexture;
 
-	Pistachio::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Pistachio::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = {0.2f, 0.3f, 0.8f}; 
 };

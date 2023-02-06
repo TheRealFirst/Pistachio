@@ -111,6 +111,7 @@ project "Sandbox"
 	language "C++"
  	cppdialect "C++17"
  	staticruntime "on"
+ 	icon "Resources/Icon/Pistachio.ico"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -136,11 +137,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines
-		{
-			"PA_PLATFORM_WINDOWS"
-		}
 
 
  	filter "configurations:Debug"

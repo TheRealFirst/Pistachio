@@ -1,12 +1,12 @@
 ﻿#include "papch.h"
 #include "WindowsInput.h"
 
-#include "Pistachio/Application.h"
+#include "Pistachio/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Pistachio
 {
-    Input* Input::s_Instance = new WindowsInput();
+    Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
     
     bool WindowsInput::IsKeyPressedImpl(int keycode)
     {

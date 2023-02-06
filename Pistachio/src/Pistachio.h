@@ -26,7 +26,3 @@
 
 #include "Pistachio/Renderer/OrthographicCamera.h"
 // --------------------------------------
-
-// ---Entry Point------------------------
-#include "Pistachio/Core/Entrypoint.h"
-// --------------------------------------

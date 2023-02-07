@@ -19,6 +19,8 @@ private:
     // Temp
     Pistachio::Ref<Pistachio::VertexArray> m_SquareVA;
     Pistachio::Ref<Pistachio::Shader> m_FlatColorShader;
+
+    Pistachio::Ref<Pistachio::Texture2D> m_Texture;
     
     glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};
 };

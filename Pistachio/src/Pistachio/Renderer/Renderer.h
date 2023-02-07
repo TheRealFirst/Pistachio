@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-#include "RenderCommand.h"
+#include "Pistachio/Renderer/RenderCommand.h"
 
-#include "OrthographicCamera.h"
-#include "Shader.h"
+#include "Pistachio/Renderer/OrthographicCamera.h"
+#include "Pistachio/Renderer/Shader.h"
 
 namespace Pistachio
 {
@@ -11,6 +11,8 @@ namespace Pistachio
     {
     public:
         static void Init();
+        static void Shutdown();
+        
         static void OnWindowResize(uint32_t width, uint32_t height);
         
         static void BeginScene(OrthographicCamera& camera);

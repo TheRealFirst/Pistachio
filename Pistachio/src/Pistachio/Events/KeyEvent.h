@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-#include "Event.h"
+#include "Pistachio/Events/Event.h"
 
 namespace Pistachio {
-    class PISTACHIO_API KeyEvent : public Event
+    class KeyEvent : public Event
     {
     public:
         inline int GetKeyCode() const {return m_KeyCode;}
@@ -17,7 +17,7 @@ namespace Pistachio {
     };
     
 
-    class PISTACHIO_API KeyPressedEvent : public KeyEvent
+    class KeyPressedEvent : public KeyEvent
     {
     public:
         KeyPressedEvent(int keycode, int repeatCount)
@@ -37,7 +37,7 @@ namespace Pistachio {
         int m_RepeatCount;
     };
 
-    class PISTACHIO_API KeyReleasedEvent : public KeyEvent
+    class KeyReleasedEvent : public KeyEvent
     {
     public:
         KeyReleasedEvent(int keycode)
@@ -53,7 +53,7 @@ namespace Pistachio {
         EVENT_CLASS_TYPE(KeyReleased)
     };
 
-    class PISTACHIO_API KeyTypedEvent : public KeyEvent
+    class KeyTypedEvent : public KeyEvent
     {
     public:
         KeyTypedEvent(int keycode)

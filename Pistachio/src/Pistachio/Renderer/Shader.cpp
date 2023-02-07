@@ -1,7 +1,7 @@
 ﻿#include "papch.h"
-#include "Shader.h"
+#include "Pistachio/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "Pistachio/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Pistachio
@@ -11,7 +11,7 @@ namespace Pistachio
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
-        case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(filepath);
+        case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(filepath);
         }
 
         PA_CORE_ASSERT(false, "Unknown RendererAPI")
@@ -23,7 +23,7 @@ namespace Pistachio
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
-        case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);        }
+        case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);        }
 
         PA_CORE_ASSERT(false, "Unknown RendererAPI")
         return nullptr;

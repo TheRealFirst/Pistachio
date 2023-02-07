@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "OrthographicCamera.h"
-#include "Texture.h"
+#include "Pistachio/Renderer/OrthographicCamera.h"
+#include "Pistachio/Renderer/Texture.h"
 
 namespace Pistachio
 {

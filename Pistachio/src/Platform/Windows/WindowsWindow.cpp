@@ -1,5 +1,5 @@
 ﻿#include "papch.h"
-#include "WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 #include "Pistachio/Events/ApplicationEvent.h"
 #include "Pistachio/Events/KeyEvent.h"
@@ -16,9 +16,9 @@ namespace Pistachio
         PA_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
     }
 
-    Window* Window::Create(const WindowProbs& probs)
+    Scope<Window> Window::Create(const WindowProbs& probs)
     {
-        return new WindowsWindow(probs);
+        return CreateScope<WindowsWindow>(probs);
     }
 
     WindowsWindow::WindowsWindow(const WindowProbs& probs)
@@ -41,7 +41,6 @@ namespace Pistachio
 
         if(s_GLFWWindowCount == 0)
         {
-            PA_CORE_INFO("Initializing GLFW");
             int success = glfwInit();
             PA_CORE_ASSERT(success, "Could not initialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
@@ -51,7 +50,7 @@ namespace Pistachio
         m_Window = glfwCreateWindow((int)probs.Width, (int)probs.Height, m_Data.Title.c_str(), nullptr, nullptr);
         ++s_GLFWWindowCount;
 
-        m_Context = CreateScope<OpenGLContext>(m_Window);
+        m_Context = GraphicsContext::Create(m_Window);
         m_Context->Init();
         
         glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -152,9 +151,10 @@ namespace Pistachio
     {
         glfwDestroyWindow(m_Window);
 
-        if(--s_GLFWWindowCount == 0)
+        --s_GLFWWindowCount;
+        
+        if(s_GLFWWindowCount == 0)
         {
-            PA_CORE_INFO("Terminating GLFW");
             glfwTerminate();
         }
     }

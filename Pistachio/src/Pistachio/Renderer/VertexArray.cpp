@@ -1,9 +1,7 @@
 #include "papch.h"
-#include "VertexArray.h"
+#include "Pistachio/Renderer/VertexArray.h"
 
-#include <memory>
-
-#include "Renderer.h"
+#include "Pistachio/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Pistachio
@@ -13,7 +11,7 @@ namespace Pistachio
         switch (Renderer::GetAPI())
         {
         case RendererAPI::API::None: PA_CORE_ASSERT(false, "RendererAPI::None is currently not supported!") return nullptr;
-        case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
+        case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexArray>();
         }
 
         PA_CORE_ASSERT(false, "Unknown RendererAPI");

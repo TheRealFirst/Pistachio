@@ -1,15 +1,15 @@
 ﻿#pragma once
 #include "Pistachio/Core/Core.h"
-#include "Layer.h"
+#include "Pistachio/Core/Layer.h"
 
 #include <vector>
 
 namespace Pistachio
 {
-    class PISTACHIO_API LayerStack
+    class LayerStack
     {
     public:
-        LayerStack();
+        LayerStack() = default;
         ~LayerStack();
 
         void PushLayer(Layer* layer);

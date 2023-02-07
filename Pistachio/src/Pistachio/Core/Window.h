@@ -21,7 +21,7 @@ namespace Pistachio
     };
 
     // Interface representing a desktop system based Window
-    class PISTACHIO_API Window
+    class Window
     {
     public:
         using  EventCallbackFn = std::function<void(Event&)>;
@@ -40,6 +40,6 @@ namespace Pistachio
 
         virtual void* GetNativeWindow() const = 0;
 
-        static Window* Create(const WindowProbs& probs = WindowProbs());
+        static Scope<Window> Create(const WindowProbs& probs = WindowProbs());
     };
 }

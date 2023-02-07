@@ -1,7 +1,7 @@
 ﻿#include "papch.h"
-#include "Texture.h"
+#include "Pistachio/Renderer/Texture.h"
 
-#include "Renderer.h"
+#include "Pistachio/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 

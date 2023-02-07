@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "Pistachio/Core/Core.h"
 #include "papch.h"
 
+#include "Pistachio/Core/Core.h"
 
 namespace Pistachio {
 
-	// Events in Hazel are currently blocking, meaning when an event occurs it
+	// Events in Pistachio are currently blocking, meaning when an event occurs it
 	// immediately gets dispatched and must be dealt with right then an there.
 	// For the future, a better strategy might be to buffer events in an event
 	// bus and process them during the "event" part of the update stage.
@@ -36,7 +36,7 @@ namespace Pistachio {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class PISTACHIO_API Event
+	class Event
 	{
 	public:
 		virtual ~Event() = default;

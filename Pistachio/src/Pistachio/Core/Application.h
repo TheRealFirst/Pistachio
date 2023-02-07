@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "Pistachio/Core/Core.h"
 
 #include "Pistachio/Core/Window.h"
 #include "Pistachio/Core/LayerStack.h"
@@ -13,7 +13,7 @@
 
 namespace Pistachio 
 {
-	class PISTACHIO_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -33,7 +33,7 @@ namespace Pistachio
 			return *s_Instance;
 		}
 	private:
-		bool OnWindowClosed(WindowCloseEvent& e);
+		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:

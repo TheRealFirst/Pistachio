@@ -4,7 +4,7 @@
 
 namespace Pistachio
 {
-    class PISTACHIO_API Input
+    class Input
     {
     protected:
         Input() = default;

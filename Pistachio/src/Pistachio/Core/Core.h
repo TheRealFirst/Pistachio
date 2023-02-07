@@ -43,21 +43,9 @@
 	#error "Unknown platform!"
 #endif // End of platform detection
 
-
-// DLL support
-#ifdef PA_PLATFORM_WINDOWS	
-	#if PA_DYNAMIC_LINK
-		#ifdef PA_BUILD_DLL
-			#define PISTACHIO_API __declspec(dllexport)
-		#else
-			#define PISTACHIO_API __declspec(dllimport)
-		#endif
-	#else
-		#define PISTACHIO_API
-	#endif
-#else
-	#error Pistachio only supports Windows!
-#endif // End of DLL support
+#ifdef PA_DEBUG
+	#define PA_ENABLE_ASSERTS
+#endif
 
 #ifdef PA_ENABLE_ASSERTS
 	#define PA_ASSERT(x, ...) { if(!(x)) { PA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

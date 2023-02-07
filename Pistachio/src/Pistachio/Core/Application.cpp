@@ -1,8 +1,11 @@
 #include "papch.h"
-#include "Application.h"
+#include "Pistachio/Core/Application.h"
+
+#include "Pistachio/Renderer/Renderer.h"
+
+#include "Pistachio/Core/Input.h"
 
 #include "GLFW/glfw3.h"
-#include "Pistachio/Renderer/Renderer.h"
 
 namespace Pistachio 
 {
@@ -15,8 +18,8 @@ namespace Pistachio
 		PA_CORE_ASSERT(!s_Instance, "Application already exists!")
 		s_Instance = this;
 		
-		m_Window = Scope<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window = Window::Create();
+		m_Window->SetEventCallback(PA_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
 
@@ -26,6 +29,7 @@ namespace Pistachio
 
 	Application::~Application()
 	{
+		Renderer::Shutdown();
 	}
 
 	void Application::Run() {
@@ -53,8 +57,8 @@ namespace Pistachio
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(PA_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(PA_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for(auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -76,7 +80,7 @@ namespace Pistachio
 		layer->OnAttach();
 	}
 
-	bool Application::OnWindowClosed(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;
 		return true;

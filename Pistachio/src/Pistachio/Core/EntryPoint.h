@@ -1,4 +1,5 @@
 #pragma once
+#include "Pistachio/Core/Core.h"
 
 #ifdef PA_PLATFORM_WINDOWS
 

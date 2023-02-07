@@ -1,10 +1,10 @@
 ﻿#pragma once
 
-#include "Event.h"
+#include "Pistachio/Events/Event.h"
 
 namespace Pistachio {
 
-	class PISTACHIO_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(const float x, const float y)
@@ -26,7 +26,7 @@ namespace Pistachio {
 		float m_MouseX, m_MouseY;
 	};
 
-	class PISTACHIO_API MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(const float xOffset, const float yOffset)
@@ -48,7 +48,7 @@ namespace Pistachio {
 		float m_XOffset, m_YOffset;
 	};
 
-	class PISTACHIO_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -61,7 +61,7 @@ namespace Pistachio {
 		int m_Button;
 	};
 
-	class PISTACHIO_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -77,7 +77,7 @@ namespace Pistachio {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class PISTACHIO_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

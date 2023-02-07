@@ -1,12 +1,8 @@
 ﻿#include "papch.h"
-#include "LayerStack.h"
+#include "Pistachio/Core/LayerStack.h"
 
 namespace Pistachio
 {
-    LayerStack::LayerStack()
-    {
-    }
-
     LayerStack::~LayerStack()
     {
         for(Layer* layer : m_Layers)

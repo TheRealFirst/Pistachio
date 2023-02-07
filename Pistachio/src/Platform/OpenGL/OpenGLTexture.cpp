@@ -1,11 +1,11 @@
 ﻿#include "papch.h"
-#include "OpenGLTexture.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 #include "stb_image.h"
 
 #include <glad/glad.h>
 
-#include "stb_image.h"
+#include <stb_image.h>
 
 namespace Pistachio
 {

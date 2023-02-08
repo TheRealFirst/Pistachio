@@ -140,9 +140,7 @@ public:
 		// PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());
 	}
-	~Sandbox() {
-
-	}
+	~Sandbox() = default;
 };
 
 Pistachio::Application* Pistachio::CreateApplication() {

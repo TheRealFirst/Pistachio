@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Pistachio/Core/Log.h"
+#include "Pistachio/Debug/Instrumentor.h"
 
 #ifdef PA_PLATFORM_WINDOWS
     #include <Windows.h>

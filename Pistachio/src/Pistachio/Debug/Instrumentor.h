@@ -123,7 +123,7 @@ namespace Pistachio
     };
 }
 
-#define PA_PROFILE 1
+#define PA_PROFILE 0
 #if PA_PROFILE
     #define PA_PROFILE_BEGIN_SESSION(name, filepath) ::Pistachio::Instrumentor::Get().BeginSession(name, filepath)
     #define PA_PROFILE_END_SESSION() ::Pistachio::Instrumentor::Get().EndSession()

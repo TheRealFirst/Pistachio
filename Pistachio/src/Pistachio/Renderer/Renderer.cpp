@@ -9,6 +9,8 @@ namespace Pistachio
 
     void Renderer::Init()
     {
+        PA_PROFILE_FUNCTION()
+        
         RenderCommand::Init();
         Renderer2D::Init();
     }

@@ -11,22 +11,21 @@ Sandbox2D::Sandbox2D() : Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f
 
 void Sandbox2D::OnAttach()
 {
+    PA_PROFILE_FUNCTION()
+    
     m_Texture = Pistachio::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+    PA_PROFILE_FUNCTION()
 }
 
 void Sandbox2D::OnUpdate(Pistachio::Timestep ts)
 {
-    PA_PROFILE_FUNCTION();
-
-    // Update
-    {
-        PA_PROFILE_SCOPE("CameraController::OnUpdate");
-        m_CameraController.OnUpdate(ts);
-    }
+    PA_PROFILE_FUNCTION()
+    
+    m_CameraController.OnUpdate(ts);
 
     // Render
     {
@@ -48,7 +47,7 @@ void Sandbox2D::OnUpdate(Pistachio::Timestep ts)
 
 void Sandbox2D::OnImGuiRender()
 {
-    PA_PROFILE_FUNCTION();
+    PA_PROFILE_FUNCTION()
     
     ImGui::Begin("Settings");
     ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
@@ -57,5 +56,7 @@ void Sandbox2D::OnImGuiRender()
 
 void Sandbox2D::OnEvent(Pistachio::Event& e)
 {
+    PA_PROFILE_FUNCTION()
+    
     m_CameraController.OnEvent(e);
 }

@@ -23,16 +23,22 @@ namespace Pistachio
 
     WindowsWindow::WindowsWindow(const WindowProbs& probs)
     {
+        PA_PROFILE_FUNCTION()
+        
         Init(probs);
     }
 
     WindowsWindow::~WindowsWindow()
     {
+        PA_PROFILE_FUNCTION()
+        
         Shutdown();
     }
 
     void WindowsWindow::Init(const WindowProbs& probs)
     {
+        PA_PROFILE_FUNCTION()
+        
         m_Data.Title = probs.Title;
         m_Data.Width = probs.Width;
         m_Data.Height = probs.Height;
@@ -41,14 +47,19 @@ namespace Pistachio
 
         if(s_GLFWWindowCount == 0)
         {
+            PA_PROFILE_SCOPE("glfwInit")
+            
             int success = glfwInit();
             PA_CORE_ASSERT(success, "Could not initialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 
-        
-        m_Window = glfwCreateWindow((int)probs.Width, (int)probs.Height, m_Data.Title.c_str(), nullptr, nullptr);
-        ++s_GLFWWindowCount;
+        {
+            PA_PROFILE_SCOPE("glfwCreateWindow")
+            
+            m_Window = glfwCreateWindow((int)probs.Width, (int)probs.Height, m_Data.Title.c_str(), nullptr, nullptr);
+            ++s_GLFWWindowCount;
+        }
 
         m_Context = GraphicsContext::Create(m_Window);
         m_Context->Init();
@@ -149,6 +160,8 @@ namespace Pistachio
 
     void WindowsWindow::Shutdown()
     {
+        PA_PROFILE_FUNCTION()
+        
         glfwDestroyWindow(m_Window);
 
         --s_GLFWWindowCount;
@@ -161,12 +174,16 @@ namespace Pistachio
 
     void WindowsWindow::OnUpdate()
     {
+        PA_PROFILE_FUNCTION()
+        
         glfwPollEvents();
         m_Context->SwapBuffers();
     }
 
     void WindowsWindow::SetVSync(bool enabled)
     {
+        PA_PROFILE_FUNCTION()
+        
         if (enabled)
             glfwSwapInterval(1);
         else

@@ -1,125 +1,272 @@
 ﻿#pragma once
 
-// from glfw3.h
-#define PA_KEY_SPACE              32
-#define PA_KEY_APOSTROPHE         39  /* ' */
-#define PA_KEY_COMMA              44  /* , */
-#define PA_KEY_MINUS              45  /* - */
-#define PA_KEY_PERIOD             46  /* . */
-#define PA_KEY_SLASH              47  /* / */
-#define PA_KEY_0                  48
-#define PA_KEY_1                  49
-#define PA_KEY_2                  50
-#define PA_KEY_3                  51
-#define PA_KEY_4                  52
-#define PA_KEY_5                  53
-#define PA_KEY_6                  54
-#define PA_KEY_7                  55
-#define PA_KEY_8                  56
-#define PA_KEY_9                  57
-#define PA_KEY_SEMICOLON          59  /* ; */
-#define PA_KEY_EQUAL              61  /* = */
-#define PA_KEY_A                  65
-#define PA_KEY_B                  66
-#define PA_KEY_C                  67
-#define PA_KEY_D                  68
-#define PA_KEY_E                  69
-#define PA_KEY_F                  70
-#define PA_KEY_G                  71
-#define PA_KEY_H                  72
-#define PA_KEY_I                  73
-#define PA_KEY_J                  74
-#define PA_KEY_K                  75
-#define PA_KEY_L                  76
-#define PA_KEY_M                  77
-#define PA_KEY_N                  78
-#define PA_KEY_O                  79
-#define PA_KEY_P                  80
-#define PA_KEY_Q                  81
-#define PA_KEY_R                  82
-#define PA_KEY_S                  83
-#define PA_KEY_T                  84
-#define PA_KEY_U                  85
-#define PA_KEY_V                  86
-#define PA_KEY_W                  87
-#define PA_KEY_X                  88
-#define PA_KEY_Y                  89
-#define PA_KEY_Z                  90
-#define PA_KEY_LEFT_BRACKET       91  /* [ */
-#define PA_KEY_BACKSLASH          92  /* \ */
-#define PA_KEY_RIGHT_BRACKET      93  /* ] */
-#define PA_KEY_GRAVE_ACCENT       96  /* ` */
-#define PA_KEY_WORLD_1            161 /* non-US #1 */
-#define PA_KEY_WORLD_2            162 /* non-US #2 */
+namespace Pistachio
+{
+    typedef enum class KeyCode : uint16_t
+	{
+		// From glfw3.h
+		Space               = 32,
+		Apostrophe          = 39, /* ' */
+		Comma               = 44, /* , */
+		Minus               = 45, /* - */
+		Period              = 46, /* . */
+		Slash               = 47, /* / */
+
+		D0                  = 48, /* 0 */
+		D1                  = 49, /* 1 */
+		D2                  = 50, /* 2 */
+		D3                  = 51, /* 3 */
+		D4                  = 52, /* 4 */
+		D5                  = 53, /* 5 */
+		D6                  = 54, /* 6 */
+		D7                  = 55, /* 7 */
+		D8                  = 56, /* 8 */
+		D9                  = 57, /* 9 */
+
+		Semicolon           = 59, /* ; */
+		Equal               = 61, /* = */
+
+		A                   = 65,
+		B                   = 66,
+		C                   = 67,
+		D                   = 68,
+		E                   = 69,
+		F                   = 70,
+		G                   = 71,
+		H                   = 72,
+		I                   = 73,
+		J                   = 74,
+		K                   = 75,
+		L                   = 76,
+		M                   = 77,
+		N                   = 78,
+		O                   = 79,
+		P                   = 80,
+		Q                   = 81,
+		R                   = 82,
+		S                   = 83,
+		T                   = 84,
+		U                   = 85,
+		V                   = 86,
+		W                   = 87,
+		X                   = 88,
+		Y                   = 89,
+		Z                   = 90,
+
+		LeftBracket         = 91,  /* [ */
+		Backslash           = 92,  /* \ */
+		RightBracket        = 93,  /* ] */
+		GraveAccent         = 96,  /* ` */
+
+		World1              = 161, /* non-US #1 */
+		World2              = 162, /* non-US #2 */
+
+		/* Function keys */
+		Escape              = 256,
+		Enter               = 257,
+		Tab                 = 258,
+		Backspace           = 259,
+		Insert              = 260,
+		Delete              = 261,
+		Right               = 262,
+		Left                = 263,
+		Down                = 264,
+		Up                  = 265,
+		PageUp              = 266,
+		PageDown            = 267,
+		Home                = 268,
+		End                 = 269,
+		CapsLock            = 280,
+		ScrollLock          = 281,
+		NumLock             = 282,
+		PrintScreen         = 283,
+		Pause               = 284,
+		F1                  = 290,
+		F2                  = 291,
+		F3                  = 292,
+		F4                  = 293,
+		F5                  = 294,
+		F6                  = 295,
+		F7                  = 296,
+		F8                  = 297,
+		F9                  = 298,
+		F10                 = 299,
+		F11                 = 300,
+		F12                 = 301,
+		F13                 = 302,
+		F14                 = 303,
+		F15                 = 304,
+		F16                 = 305,
+		F17                 = 306,
+		F18                 = 307,
+		F19                 = 308,
+		F20                 = 309,
+		F21                 = 310,
+		F22                 = 311,
+		F23                 = 312,
+		F24                 = 313,
+		F25                 = 314,
+
+		/* Keypad */
+		KP0                 = 320,
+		KP1                 = 321,
+		KP2                 = 322,
+		KP3                 = 323,
+		KP4                 = 324,
+		KP5                 = 325,
+		KP6                 = 326,
+		KP7                 = 327,
+		KP8                 = 328,
+		KP9                 = 329,
+		KPDecimal           = 330,
+		KPDivide            = 331,
+		KPMultiply          = 332,
+		KPSubtract          = 333,
+		KPAdd               = 334,
+		KPEnter             = 335,
+		KPEqual             = 336,
+
+		LeftShift           = 340,
+		LeftControl         = 341,
+		LeftAlt             = 342,
+		LeftSuper           = 343,
+		RightShift          = 344,
+		RightControl        = 345,
+		RightAlt            = 346,
+		RightSuper          = 347,
+		Menu                = 348
+	} Key;
+
+	inline std::ostream& operator<<(std::ostream& os, KeyCode keyCode)
+	{
+		os << static_cast<int32_t>(keyCode);
+		return os;
+	}
+}
+
+// From glfw3.h
+#define PA_KEY_SPACE           ::Pistachio::Key::Space
+#define PA_KEY_APOSTROPHE      ::Pistachio::Key::Apostrophe    /* ' */
+#define PA_KEY_COMMA           ::Pistachio::Key::Comma         /* , */
+#define PA_KEY_MINUS           ::Pistachio::Key::Minus         /* - */
+#define PA_KEY_PERIOD          ::Pistachio::Key::Period        /* . */
+#define PA_KEY_SLASH           ::Pistachio::Key::Slash         /* / */
+#define PA_KEY_0               ::Pistachio::Key::D0
+#define PA_KEY_1               ::Pistachio::Key::D1
+#define PA_KEY_2               ::Pistachio::Key::D2
+#define PA_KEY_3               ::Pistachio::Key::D3
+#define PA_KEY_4               ::Pistachio::Key::D4
+#define PA_KEY_5               ::Pistachio::Key::D5
+#define PA_KEY_6               ::Pistachio::Key::D6
+#define PA_KEY_7               ::Pistachio::Key::D7
+#define PA_KEY_8               ::Pistachio::Key::D8
+#define PA_KEY_9               ::Pistachio::Key::D9
+#define PA_KEY_SEMICOLON       ::Pistachio::Key::Semicolon     /* ; */
+#define PA_KEY_EQUAL           ::Pistachio::Key::Equal         /* = */
+#define PA_KEY_A               ::Pistachio::Key::A
+#define PA_KEY_B               ::Pistachio::Key::B
+#define PA_KEY_C               ::Pistachio::Key::C
+#define PA_KEY_D               ::Pistachio::Key::D
+#define PA_KEY_E               ::Pistachio::Key::E
+#define PA_KEY_F               ::Pistachio::Key::F
+#define PA_KEY_G               ::Pistachio::Key::G
+#define PA_KEY_H               ::Pistachio::Key::H
+#define PA_KEY_I               ::Pistachio::Key::I
+#define PA_KEY_J               ::Pistachio::Key::J
+#define PA_KEY_K               ::Pistachio::Key::K
+#define PA_KEY_L               ::Pistachio::Key::L
+#define PA_KEY_M               ::Pistachio::Key::M
+#define PA_KEY_N               ::Pistachio::Key::N
+#define PA_KEY_O               ::Pistachio::Key::O
+#define PA_KEY_P               ::Pistachio::Key::P
+#define PA_KEY_Q               ::Pistachio::Key::Q
+#define PA_KEY_R               ::Pistachio::Key::R
+#define PA_KEY_S               ::Pistachio::Key::S
+#define PA_KEY_T               ::Pistachio::Key::T
+#define PA_KEY_U               ::Pistachio::Key::U
+#define PA_KEY_V               ::Pistachio::Key::V
+#define PA_KEY_W               ::Pistachio::Key::W
+#define PA_KEY_X               ::Pistachio::Key::X
+#define PA_KEY_Y               ::Pistachio::Key::Y
+#define PA_KEY_Z               ::Pistachio::Key::Z
+#define PA_KEY_LEFT_BRACKET    ::Pistachio::Key::LeftBracket   /* [ */
+#define PA_KEY_BACKSLASH       ::Pistachio::Key::Backslash     /* \ */
+#define PA_KEY_RIGHT_BRACKET   ::Pistachio::Key::RightBracket  /* ] */
+#define PA_KEY_GRAVE_ACCENT    ::Pistachio::Key::GraveAccent   /* ` */
+#define PA_KEY_WORLD_1         ::Pistachio::Key::World1        /* non-US #1 */
+#define PA_KEY_WORLD_2         ::Pistachio::Key::World2        /* non-US #2 */
 
 /* Function keys */
-#define PA_KEY_ESCAPE             256
-#define PA_KEY_ENTER              257
-#define PA_KEY_TAB                258
-#define PA_KEY_BACKSPACE          259
-#define PA_KEY_INSERT             260
-#define PA_KEY_DELETE             261
-#define PA_KEY_RIGHT              262
-#define PA_KEY_LEFT               263
-#define PA_KEY_DOWN               264
-#define PA_KEY_UP                 265
-#define PA_KEY_PAGE_UP            266
-#define PA_KEY_PAGE_DOWN          267
-#define PA_KEY_HOME               268
-#define PA_KEY_END                269
-#define PA_KEY_CAPS_LOCK          280
-#define PA_KEY_SCROLL_LOCK        281
-#define PA_KEY_NUM_LOCK           282
-#define PA_KEY_PRINT_SCREEN       283
-#define PA_KEY_PAUSE              284
-#define PA_KEY_F1                 290
-#define PA_KEY_F2                 291
-#define PA_KEY_F3                 292
-#define PA_KEY_F4                 293
-#define PA_KEY_F5                 294
-#define PA_KEY_F6                 295
-#define PA_KEY_F7                 296
-#define PA_KEY_F8                 297
-#define PA_KEY_F9                 298
-#define PA_KEY_F10                299
-#define PA_KEY_F11                300
-#define PA_KEY_F12                301
-#define PA_KEY_F13                302
-#define PA_KEY_F14                303
-#define PA_KEY_F15                304
-#define PA_KEY_F16                305
-#define PA_KEY_F17                306
-#define PA_KEY_F18                307
-#define PA_KEY_F19                308
-#define PA_KEY_F20                309
-#define PA_KEY_F21                310
-#define PA_KEY_F22                311
-#define PA_KEY_F23                312
-#define PA_KEY_F24                313
-#define PA_KEY_F25                314
-#define PA_KEY_KP_0               320
-#define PA_KEY_KP_1               321
-#define PA_KEY_KP_2               322
-#define PA_KEY_KP_3               323
-#define PA_KEY_KP_4               324
-#define PA_KEY_KP_5               325
-#define PA_KEY_KP_6               326
-#define PA_KEY_KP_7               327
-#define PA_KEY_KP_8               328
-#define PA_KEY_KP_9               329
-#define PA_KEY_KP_DECIMAL         330
-#define PA_KEY_KP_DIVIDE          331
-#define PA_KEY_KP_MULTIPLY        332
-#define PA_KEY_KP_SUBTRACT        333
-#define PA_KEY_KP_ADD             334
-#define PA_KEY_KP_ENTER           335
-#define PA_KEY_KP_EQUAL           336
-#define PA_KEY_LEFT_SHIFT         340
-#define PA_KEY_LEFT_CONTROL       341
-#define PA_KEY_LEFT_ALT           342
-#define PA_KEY_LEFT_SUPER         343
-#define PA_KEY_RIGHT_SHIFT        344
-#define PA_KEY_RIGHT_CONTROL      345
-#define PA_KEY_RIGHT_ALT          346
-#define PA_KEY_RIGHT_SUPER        347
-#define PA_KEY_MENU               348
+#define PA_KEY_ESCAPE          ::Pistachio::Key::Escape
+#define PA_KEY_ENTER           ::Pistachio::Key::Enter
+#define PA_KEY_TAB             ::Pistachio::Key::Tab
+#define PA_KEY_BACKSPACE       ::Pistachio::Key::Backspace
+#define PA_KEY_INSERT          ::Pistachio::Key::Insert
+#define PA_KEY_DELETE          ::Pistachio::Key::Delete
+#define PA_KEY_RIGHT           ::Pistachio::Key::Right
+#define PA_KEY_LEFT            ::Pistachio::Key::Left
+#define PA_KEY_DOWN            ::Pistachio::Key::Down
+#define PA_KEY_UP              ::Pistachio::Key::Up
+#define PA_KEY_PAGE_UP         ::Pistachio::Key::PageUp
+#define PA_KEY_PAGE_DOWN       ::Pistachio::Key::PageDown
+#define PA_KEY_HOME            ::Pistachio::Key::Home
+#define PA_KEY_END             ::Pistachio::Key::End
+#define PA_KEY_CAPS_LOCK       ::Pistachio::Key::CapsLock
+#define PA_KEY_SCROLL_LOCK     ::Pistachio::Key::ScrollLock
+#define PA_KEY_NUM_LOCK        ::Pistachio::Key::NumLock
+#define PA_KEY_PRINT_SCREEN    ::Pistachio::Key::PrintScreen
+#define PA_KEY_PAUSE           ::Pistachio::Key::Pause
+#define PA_KEY_F1              ::Pistachio::Key::F1
+#define PA_KEY_F2              ::Pistachio::Key::F2
+#define PA_KEY_F3              ::Pistachio::Key::F3
+#define PA_KEY_F4              ::Pistachio::Key::F4
+#define PA_KEY_F5              ::Pistachio::Key::F5
+#define PA_KEY_F6              ::Pistachio::Key::F6
+#define PA_KEY_F7              ::Pistachio::Key::F7
+#define PA_KEY_F8              ::Pistachio::Key::F8
+#define PA_KEY_F9              ::Pistachio::Key::F9
+#define PA_KEY_F10             ::Pistachio::Key::F10
+#define PA_KEY_F11             ::Pistachio::Key::F11
+#define PA_KEY_F12             ::Pistachio::Key::F12
+#define PA_KEY_F13             ::Pistachio::Key::F13
+#define PA_KEY_F14             ::Pistachio::Key::F14
+#define PA_KEY_F15             ::Pistachio::Key::F15
+#define PA_KEY_F16             ::Pistachio::Key::F16
+#define PA_KEY_F17             ::Pistachio::Key::F17
+#define PA_KEY_F18             ::Pistachio::Key::F18
+#define PA_KEY_F19             ::Pistachio::Key::F19
+#define PA_KEY_F20             ::Pistachio::Key::F20
+#define PA_KEY_F21             ::Pistachio::Key::F21
+#define PA_KEY_F22             ::Pistachio::Key::F22
+#define PA_KEY_F23             ::Pistachio::Key::F23
+#define PA_KEY_F24             ::Pistachio::Key::F24
+#define PA_KEY_F25             ::Pistachio::Key::F25
+
+/* Keypad */
+#define PA_KEY_KP_0            ::Pistachio::Key::KP0
+#define PA_KEY_KP_1            ::Pistachio::Key::KP1
+#define PA_KEY_KP_2            ::Pistachio::Key::KP2
+#define PA_KEY_KP_3            ::Pistachio::Key::KP3
+#define PA_KEY_KP_4            ::Pistachio::Key::KP4
+#define PA_KEY_KP_5            ::Pistachio::Key::KP5
+#define PA_KEY_KP_6            ::Pistachio::Key::KP6
+#define PA_KEY_KP_7            ::Pistachio::Key::KP7
+#define PA_KEY_KP_8            ::Pistachio::Key::KP8
+#define PA_KEY_KP_9            ::Pistachio::Key::KP9
+#define PA_KEY_KP_DECIMAL      ::Pistachio::Key::KPDecimal
+#define PA_KEY_KP_DIVIDE       ::Pistachio::Key::KPDivide
+#define PA_KEY_KP_MULTIPLY     ::Pistachio::Key::KPMultiply
+#define PA_KEY_KP_SUBTRACT     ::Pistachio::Key::KPSubtract
+#define PA_KEY_KP_ADD          ::Pistachio::Key::KPAdd
+#define PA_KEY_KP_ENTER        ::Pistachio::Key::KPEnter
+#define PA_KEY_KP_EQUAL        ::Pistachio::Key::KPEqual
+
+#define PA_KEY_LEFT_SHIFT      ::Pistachio::Key::LeftShift
+#define PA_KEY_LEFT_CONTROL    ::Pistachio::Key::LeftControl
+#define PA_KEY_LEFT_ALT        ::Pistachio::Key::LeftAlt
+#define PA_KEY_LEFT_SUPER      ::Pistachio::Key::LeftSuper
+#define PA_KEY_RIGHT_SHIFT     ::Pistachio::Key::RightShift
+#define PA_KEY_RIGHT_CONTROL   ::Pistachio::Key::RightControl
+#define PA_KEY_RIGHT_ALT       ::Pistachio::Key::RightAlt
+#define PA_KEY_RIGHT_SUPER     ::Pistachio::Key::RightSuper
+#define PA_KEY_MENU            ::Pistachio::Key::Menu

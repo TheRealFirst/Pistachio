@@ -12,7 +12,7 @@
 
 #include "Pistachio/Core/Input.h"
 #include "Pistachio/Core/KeyCodes.h"
-#include "Pistachio/Core/MouseButtonCodes.h"
+#include "Pistachio/Core/MouseCodes.h"
 #include "Pistachio/Renderer/OrthographicCameraController.h"
 
 #include "Pistachio/ImGui/ImGuiLayer.h"

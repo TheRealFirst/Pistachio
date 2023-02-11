@@ -1,9 +1,12 @@
 ﻿#include "papch.h"
 #include "Platform/Windows/WindowsWindow.h"
 
+#include "Pistachio/Core/Input.h"
+
 #include "Pistachio/Events/ApplicationEvent.h"
 #include "Pistachio/Events/KeyEvent.h"
 #include "Pistachio/Events/MouseEvent.h"
+#include "Pistachio/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLContext.h"
 
@@ -14,11 +17,6 @@ namespace Pistachio
     static void GLFWErrorCallback(int error, const char* description)
     {
         PA_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
-    }
-
-    Scope<Window> Window::Create(const WindowProbs& probs)
-    {
-        return CreateScope<WindowsWindow>(probs);
     }
 
     WindowsWindow::WindowsWindow(const WindowProbs& probs)
@@ -56,6 +54,10 @@ namespace Pistachio
 
         {
             PA_PROFILE_SCOPE("glfwCreateWindow")
+#if defined(PA_DEBUG)
+            if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+                glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
             
             m_Window = glfwCreateWindow((int)probs.Width, (int)probs.Height, m_Data.Title.c_str(), nullptr, nullptr);
             ++s_GLFWWindowCount;
@@ -93,19 +95,19 @@ namespace Pistachio
             {
                 case GLFW_PRESS:
                 {
-                    KeyPressedEvent event(key, 0);
+                    KeyPressedEvent event(static_cast<KeyCode>(key), 0);
                     data.EventCallback(event);
                     break;
                 }
                 case GLFW_RELEASE:
                 {
-                    KeyReleasedEvent event(key);
+                    KeyReleasedEvent event(static_cast<KeyCode>(key));
                     data.EventCallback(event);
                     break;
                 }
                 case GLFW_REPEAT:
                 {
-                    KeyPressedEvent event(key, 1);
+                    KeyPressedEvent event(static_cast<KeyCode>(key), 1);
                     data.EventCallback(event);
                     break;
                 }
@@ -116,7 +118,7 @@ namespace Pistachio
         {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
             
-            KeyTypedEvent event(keycode);
+            KeyTypedEvent event(static_cast<KeyCode>(keycode));
             data.EventCallback(event);
         });
 
@@ -128,13 +130,13 @@ namespace Pistachio
             {
                 case GLFW_PRESS:
                 {
-                    MouseButtonPressedEvent event(button);
+                    MouseButtonPressedEvent event(static_cast<MouseCode>(button));
                     data.EventCallback(event);
                     break;    
                 }
                 case GLFW_RELEASE:
                 {
-                    MouseButtonReleasedEvent event(button);
+                    MouseButtonReleasedEvent event(static_cast<MouseCode>(button));
                     data.EventCallback(event);
                     break;    
                 }

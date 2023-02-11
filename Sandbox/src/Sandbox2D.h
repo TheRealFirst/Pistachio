@@ -5,7 +5,7 @@ class Sandbox2D : public Pistachio::Layer
 {
 public:
     Sandbox2D();
-    virtual ~Sandbox2D() = default;
+    ~Sandbox2D() override = default;
     
     virtual void OnAttach() override;
     virtual void OnDetach() override;

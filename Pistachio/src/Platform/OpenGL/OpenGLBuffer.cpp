@@ -9,7 +9,7 @@ namespace Pistachio
 
     OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
     {
-        PA_PROFILE_FUNCTION()
+        PA_PROFILE_FUNCTION();
 
         glCreateBuffers(1, &m_RendererID);
         glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);

@@ -48,7 +48,7 @@ namespace Pistachio
             PA_PROFILE_SCOPE("glfwInit")
             
             int success = glfwInit();
-            PA_CORE_ASSERT(success, "Could not initialize GLFW!");
+            PA_CORE_ASSERT(success, "Could not initialize GLFW!")
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 

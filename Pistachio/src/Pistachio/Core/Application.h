@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Pistachio/Core/Core.h"
+#include "Pistachio/Core/Base.h"
 
 #include "Pistachio/Core/Window.h"
 #include "Pistachio/Core/LayerStack.h"

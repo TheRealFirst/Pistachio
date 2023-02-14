@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Pistachio/Core/Core.h"
+#include "Pistachio/Core/Base.h"
 #include "Pistachio/Core/KeyCodes.h"
 #include "Pistachio/Core/MouseCodes.h"
 

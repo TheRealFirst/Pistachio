@@ -44,14 +44,24 @@
 #endif // End of platform detection
 
 #ifdef PA_DEBUG
+	#if defined(PA_PLATFORM_WINDOWS)
+		#define PA_DEBUGBREAK() __debugbreak()
+	#elif defined(PA_PLATFORM_LINUX)
+		#include <signal.h>
+		#define PA_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
 	#define PA_ENABLE_ASSERTS
+#else
+	#define PA_DEBUGBREAK()
 #endif
 
 #ifdef PA_ENABLE_ASSERTS
-	#define PA_ASSERT(x, ...) { if(!(x)) { PA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define PA_CORE_ASSERT(x, ...) { if(!(x)) { PA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define PA_ASSERT(x, ...) { if(!(x)) { PA_ERROR("Assertion Failed: {0}", __VA_ARGS__); PA_DEBUGBREAK(); } }
+	#define PA_CORE_ASSERT(x, ...) { if(!(x)) { PA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); PA_DEBUGBREAK(); } }
 #else
-	#define Pa_ASSERT(x, ...)
+	#define PA_ASSERT(x, ...)
 	#define PA_CORE_ASSERT(x, ...)
 #endif
 

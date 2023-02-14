@@ -2,7 +2,7 @@
 
 // For use by Pistachio Applications
 
-#include "Pistachio/Core/Core.h"
+#include "Pistachio/Core/Base.h"
 
 #include "Pistachio/Core/Application.h"
 #include "Pistachio/Core/Layer.h"

@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Pistachio/Core/Core.h"
+#include "Pistachio/Core/Base.h"
 
 namespace Pistachio
 {

@@ -40,7 +40,7 @@ namespace Pistachio {
         static void ResetStats();
         static Statistics GetStats();
     private:
-        static void FlushandReset();
+        static void FlushAndReset();
     };
 
 }

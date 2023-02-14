@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Pistachio/Core/Core.h"
+#include "Pistachio/Core/Base.h"
 #include "Pistachio/Core/Layer.h"
 
 #include <vector>

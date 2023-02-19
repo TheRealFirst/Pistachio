@@ -10,10 +10,10 @@ namespace Pistachio
     struct WindowProbs
     {
         std::string Title;
-        unsigned int Width;
-        unsigned int Height;
+        uint32_t Width;
+        uint32_t Height;
 
-        WindowProbs(const std::string& title = "Pistachio Engine", unsigned int width = 3840, unsigned int height = 2160)
+        WindowProbs(const std::string& title = "Pistachio Engine", uint32_t width = 3840, uint32_t height = 2160)
             : Title(title), Width(width), Height(height)
         {
             
@@ -30,8 +30,8 @@ namespace Pistachio
 
         virtual void OnUpdate() = 0;
 
-        virtual unsigned int GetWidth() const = 0;
-        virtual unsigned int GetHeight() const = 0;
+        virtual uint32_t GetWidth() const = 0;
+        virtual uint32_t GetHeight() const = 0;
 
         // Window attributes
         virtual void SetEventCallback(const EventCallbackFn& callback) = 0;

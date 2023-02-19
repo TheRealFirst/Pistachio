@@ -5,7 +5,7 @@
 #include "glm/gtx/transform.hpp"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-Sandbox2D::Sandbox2D() : Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f), m_SquareColor({0.2f, 0.3f, 0.8f, 1.0f})
+Sandbox2D::Sandbox2D() : Layer("Sandbox2D"), m_CameraController(3840.0f / 2160.0f), m_SquareColor({0.2f, 0.3f, 0.8f, 1.0f})
 {
 }
 
@@ -63,19 +63,18 @@ void Sandbox2D::OnUpdate(Pistachio::Timestep ts)
 
 void Sandbox2D::OnImGuiRender()
 {
-    PA_PROFILE_FUNCTION()
     
-    ImGui::Begin("Settings");
+	ImGui::Begin("Settings");
 
-    auto stats = Pistachio::Renderer2D::GetStats();
-    ImGui::Text("Renderer2D Stats:");
-    ImGui::Text("Draw Calls %d", stats.DrawCalls);
-    ImGui::Text("Quads: %d", stats.QuadCount);
-    ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-    ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-    
-    ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-    ImGui::End();
+	auto stats = Pistachio::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+
+	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	ImGui::End();
 }
 
 void Sandbox2D::OnEvent(Pistachio::Event& e)

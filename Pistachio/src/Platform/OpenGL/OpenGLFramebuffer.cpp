@@ -1,0 +1,70 @@
+﻿#include "papch.h"
+#include "OpenGLFramebuffer.h"
+
+#include "glad/glad.h"
+
+namespace Pistachio
+{
+    OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec)
+        : m_Specification(spec)
+    {
+        Invalidate();
+    }
+
+    OpenGLFramebuffer::~OpenGLFramebuffer()
+    {
+        glDeleteFramebuffers(1, &m_RendererID);
+        glDeleteTextures(1, &m_ColorAttachement);
+        glDeleteTextures(1, &m_DepthAttachement);
+    }
+
+    void OpenGLFramebuffer::Invalidate()
+    {
+        if(m_RendererID)
+        {
+            glDeleteFramebuffers(1, &m_RendererID);
+            glDeleteTextures(1, &m_ColorAttachement);
+            glDeleteTextures(1, &m_DepthAttachement);
+        }
+        
+        glCreateFramebuffers(1, &m_RendererID);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
+
+        glCreateTextures(GL_TEXTURE_2D, 1, &m_ColorAttachement);
+        glBindTexture(GL_TEXTURE_2D, m_ColorAttachement);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Specification.Width, m_Specification.Height, 0, GL_RGBA,
+                     GL_UNSIGNED_BYTE, nullptr);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_ColorAttachement, 0);
+
+        glCreateTextures(GL_TEXTURE_2D, 1, &m_DepthAttachement);
+        glBindTexture(GL_TEXTURE_2D, m_DepthAttachement);
+        glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, m_Specification.Width, m_Specification.Height);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthAttachement, 0);
+
+        PA_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!")
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+
+    void OpenGLFramebuffer::Bind()
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
+        glViewport(0, 0, m_Specification.Width, m_Specification.Height);
+    }
+
+    void OpenGLFramebuffer::UnBind()
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+
+    void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
+    {
+        m_Specification.Width = width;
+        m_Specification.Height = height;
+
+        Invalidate();
+    }
+}

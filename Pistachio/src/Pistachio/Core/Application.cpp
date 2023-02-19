@@ -11,14 +11,14 @@ namespace Pistachio
 {
 	Application* Application::s_Instance = nullptr;
 	
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		PA_PROFILE_FUNCTION()
 		
 		PA_CORE_ASSERT(!s_Instance, "Application already exists!")
 		s_Instance = this;
 		
-		m_Window = Window::Create();
+		m_Window = Window::Create(WindowProbs(name));
 		m_Window->SetEventCallback(PA_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
@@ -98,6 +98,11 @@ namespace Pistachio
 
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

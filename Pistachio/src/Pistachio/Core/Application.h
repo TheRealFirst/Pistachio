@@ -18,7 +18,7 @@ namespace Pistachio
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Pistachio Engine");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -27,6 +27,8 @@ namespace Pistachio
 		void PushOverlay(Layer* layer);
 
 		Window& GetWindow() {return *m_Window;}
+
+		void Close();
 
 		static Application& Get()
 		{

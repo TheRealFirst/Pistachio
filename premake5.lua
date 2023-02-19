@@ -1,6 +1,6 @@
  workspace "Pistachio"
 	architecture "x86_64"
- 	startproject "Sandbox"	
+ 	startproject "Pistachio-Editor"
  
 	configurations
 	{
@@ -29,9 +29,6 @@ IncludeDir["stb_image"] = "Pistachio/vendor/stb_image"
  	include "Pistachio/vendor/Glad"
  	include "Pistachio/vendor/imgui"
  group ""
-
- 
-
 
 project "Pistachio"
 	location "Pistachio"
@@ -105,6 +102,55 @@ project "Pistachio"
 
 project "Sandbox"
 	location "Sandbox"
+	kind "ConsoleApp"
+	language "C++"
+ 	cppdialect "C++17"
+ 	staticruntime "on"
+ 	icon "Resources/Icon/Pistachio.ico"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"Pistachio/vendor/spdlog/include",
+		"Pistachio/src",
+		"Pistachio/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"Pistachio"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+
+ 	filter "configurations:Debug"
+ 		defines "PA_DEBUG"
+ 		runtime "Debug"
+ 		symbols "on"
+
+ 	filter "configurations:Release"
+ 		defines "PA_RELEASE"
+ 		runtime "Release"
+ 		optimize "on"
+
+ 	filter "configurations:Dist"
+ 		defines "PA_DIST"
+ 		runtime "Release"
+ 		optimize "on"
+ 		
+project "Pistachio-Editor"
+	location "Pistachio-Editor"
 	kind "ConsoleApp"
 	language "C++"
  	cppdialect "C++17"

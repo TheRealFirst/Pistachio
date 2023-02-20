@@ -5,7 +5,6 @@
 
 namespace Pistachio
 {
-
 	class PistachioEditor : public Application {
 	public:
 		PistachioEditor() : Application("Pistachio Editor")

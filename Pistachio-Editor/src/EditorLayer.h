@@ -25,6 +25,8 @@ namespace Pistachio
 
         Ref<Texture2D> m_Texture;
 
+        bool m_ViewportFocused = false;
+        bool m_ViewportHovered = false;
         glm::vec2 m_ViewportSize = {0, 0};
         
         glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};

@@ -31,8 +31,18 @@ namespace Pistachio
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
 		PA_PROFILE_FUNCTION()
-    
-		m_CameraController.OnUpdate(ts);
+
+		// Resize
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+		{
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+		}
+
+		if(m_ViewportFocused)
+			m_CameraController.OnUpdate(ts);
     
 		// Render
 		Renderer2D::ResetStats();
@@ -54,9 +64,7 @@ namespace Pistachio
 			Renderer2D::DrawQuad({0.5f, -0.5f}, {0.5f, 0.75f}, m_SquareColor);
 			Renderer2D::DrawQuad({0.0f, 0.0f, -0.1f}, {20.0f, 20.0f}, m_Texture, 10.0f);
 			Renderer2D::DrawRotatedQuad({2.0f, 0.0f, 0.0f}, {1.0f, 1.0f}, rotation, m_Texture, 20.0f, {0.8f, 0.2f, 0.3f, 1.0f});
-			Renderer2D::EndScene();
 
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
 			for(float y = -5.0f; y < 5.0f; y += 0.5f)
 			{
 				for(float x = -5.0f; x < 5.0f; x += 0.5f)
@@ -148,14 +156,14 @@ namespace Pistachio
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{0, 0});
 		ImGui::Begin("Viewport");
-		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		if(m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
-		{
-			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-			m_ViewportSize = {viewportPanelSize.x, viewportPanelSize.y};
 
-			m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-		}
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+		
+		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+		m_ViewportSize = {viewportPanelSize.x, viewportPanelSize.y};
+
 		uint32_t textureID = m_Framebuffer->GetColorAttachementRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{0, 1}, ImVec2{1, 0});
 		ImGui::End();

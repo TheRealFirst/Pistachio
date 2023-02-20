@@ -11,7 +11,6 @@ public:
     virtual void OnDetach() override;
     
     virtual void OnUpdate(Pistachio::Timestep ts) override;
-    virtual void OnImGuiRender() override;
     virtual void OnEvent(Pistachio::Event& event) override;
 private:
     Pistachio::OrthographicCameraController m_CameraController;

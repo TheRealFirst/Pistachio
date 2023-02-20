@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	app->Run();
 	PA_PROFILE_END_SESSION();
 	
-	PA_PROFILE_BEGIN_SESSION("Startup", "PistachioProfile-Shutdown.json");
+	PA_PROFILE_BEGIN_SESSION("Shutdown", "PistachioProfile-Shutdown.json");
 	delete app;
 	PA_PROFILE_END_SESSION();
 }

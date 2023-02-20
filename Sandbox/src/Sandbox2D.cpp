@@ -1,5 +1,4 @@
 ﻿#include "Sandbox2D.h"
-#include <imgui/imgui.h>
 
 #include "glm/gtc/type_ptr.hpp"
 #include "glm/gtx/transform.hpp"
@@ -59,22 +58,6 @@ void Sandbox2D::OnUpdate(Pistachio::Timestep ts)
         }
         Pistachio::Renderer2D::EndScene();
     }
-}
-
-void Sandbox2D::OnImGuiRender()
-{
-    
-	ImGui::Begin("Settings");
-
-	auto stats = Pistachio::Renderer2D::GetStats();
-	ImGui::Text("Renderer2D Stats:");
-	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-	ImGui::Text("Quads: %d", stats.QuadCount);
-	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
-	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-	ImGui::End();
 }
 
 void Sandbox2D::OnEvent(Pistachio::Event& e)

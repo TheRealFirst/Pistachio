@@ -16,6 +16,8 @@
 #include "Pistachio/Renderer/OrthographicCameraController.h"
 
 #include "Pistachio/ImGui/ImGuiLayer.h"
+#include "Pistachio/Scene/Scene.h"
+#include "Pistachio/Scene/Components.h"
 
 // ---Rendering-------------------------
 #include "Pistachio/Renderer/Renderer.h"

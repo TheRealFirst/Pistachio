@@ -23,6 +23,7 @@ IncludeDir["Glad"] = "Pistachio/vendor/Glad/include"
 IncludeDir["ImGui"] = "Pistachio/vendor/imgui"
 IncludeDir["glm"] = "Pistachio/vendor/glm"
 IncludeDir["stb_image"] = "Pistachio/vendor/stb_image"
+IncludeDir["entt"] = "Pistachio/vendor/entt/include"
 
  group "Dependencies"
  	include "Pistachio/vendor/GLFW"
@@ -68,6 +69,7 @@ project "Pistachio"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -122,7 +124,8 @@ project "Sandbox"
 		"Pistachio/vendor/spdlog/include",
 		"Pistachio/src",
 		"Pistachio/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -171,7 +174,8 @@ project "Pistachio-Editor"
 		"Pistachio/vendor/spdlog/include",
 		"Pistachio/src",
 		"Pistachio/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links

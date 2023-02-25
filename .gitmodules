@@ -6,7 +6,6 @@
 	path = Pistachio/vendor/glfw
 	url = https://github.com/TheRealFirst/glfw
 	branch = master
-
 [submodule "Pistachio/vendor/glm"]
 	path = Pistachio/vendor/glm
 	url = https://github.com/g-truc/glm

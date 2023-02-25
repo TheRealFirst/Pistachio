@@ -26,15 +26,9 @@ namespace Pistachio {
 
 	class Instrumentor
 	{
-	private:
-		std::mutex m_Mutex;
-		InstrumentationSession* m_CurrentSession;
-		std::ofstream m_OutputStream;
 	public:
-		Instrumentor()
-			: m_CurrentSession(nullptr)
-		{
-		}
+		Instrumentor(const Instrumentor&) = delete;
+		Instrumentor(Instrumentor&&) = delete;
 
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 		{
@@ -102,7 +96,17 @@ namespace Pistachio {
 		}
 
 	private:
+		Instrumentor()
+			: m_CurrentSession(nullptr)
+		{
+		}
 
+		~Instrumentor()
+		{
+			EndSession();
+		}
+		
+		
 		void WriteHeader()
 		{
 			m_OutputStream << "{\"otherData\": {},\"traceEvents\":[{}";
@@ -128,6 +132,10 @@ namespace Pistachio {
 			}
 		}
 
+	private:
+		std::mutex m_Mutex;
+		InstrumentationSession* m_CurrentSession;
+		std::ofstream m_OutputStream;
 	};
 
 	class InstrumentationTimer
@@ -216,8 +224,10 @@ namespace Pistachio {
 
 	#define PA_PROFILE_BEGIN_SESSION(name, filepath) ::Pistachio::Instrumentor::Get().BeginSession(name, filepath)
 	#define PA_PROFILE_END_SESSION() ::Pistachio::Instrumentor::Get().EndSession()
-	#define PA_PROFILE_SCOPE(name) constexpr auto fixedName = ::Pistachio::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
-		::Pistachio::InstrumentationTimer timer##__LINE__(fixedName.Data)
+	#define PA_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::Pistachio::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+		::Pistachio::InstrumentationTimer timer##line(fixedName##line.Data)
+	#define PA_PROFILE_SCOPE_LINE(name, line) PA_PROFILE_SCOPE_LINE2(name, line)
+	#definePA_PROFILE_SCOPE(name) PA_PROFILE_SCOPE_LINE(name, __LINE__)
 	#define PA_PROFILE_FUNCTION() PA_PROFILE_SCOPE(PA_FUNC_SIG)
 #else
 	#define PA_PROFILE_BEGIN_SESSION(name, filepath)

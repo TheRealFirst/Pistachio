@@ -1,8 +1,19 @@
 ﻿#pragma once
 #include "glm/glm.hpp"
 
+#include "Pistachio/Renderer/Camera.h"
+
 namespace Pistachio
 {
+    struct TagComponent
+    {
+        std::string Tag;
+
+        TagComponent() = default;
+        TagComponent(const TagComponent&) = default;
+        TagComponent(const std::string& tag) : Tag(tag) {}
+    };
+    
     struct TransformComponent
     {
         glm::mat4 Transform{ 1.0f };
@@ -22,5 +33,15 @@ namespace Pistachio
         SpriteRendererComponent() = default;
         SpriteRendererComponent(const SpriteRendererComponent&) = default;
         SpriteRendererComponent(const glm::vec4& color) : Color(color) {}
+    };
+
+    struct CameraComponent
+    {
+        Camera Camera;
+        bool Primary = false;
+
+        CameraComponent() = default;
+        CameraComponent(const CameraComponent&) = default;
+        CameraComponent(const glm::mat4& projection) : Camera(projection) {}
     };
 }

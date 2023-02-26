@@ -18,6 +18,7 @@
 #include "Pistachio/ImGui/ImGuiLayer.h"
 #include "Pistachio/Scene/Scene.h"
 #include "Pistachio/Scene/Entity.h"
+#include "Pistachio/Scene/ScriptableEntity.h"
 #include "Pistachio/Scene/Components.h"
 
 // ---Rendering-------------------------

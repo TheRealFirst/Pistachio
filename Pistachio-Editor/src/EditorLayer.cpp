@@ -13,8 +13,6 @@ namespace Pistachio
 
 	void EditorLayer::OnAttach()
 	{
-		// PA_PROFILE_FUNCTION()
-    
 		m_Texture = Texture2D::Create("assets/textures/Checkerboard.png");
 
 		FramebufferSpecification fbSpec;
@@ -60,19 +58,16 @@ namespace Pistachio
 					transform[3][1] -= speed * ts;
 			}
 		};
+		
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-
 	}
 
 	void EditorLayer::OnDetach()
 	{
-		// PA_PROFILE_FUNCTION()
 	}
 
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
-		// PA_PROFILE_FUNCTION()
-
 		// Resize
 		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
 			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
@@ -103,8 +98,6 @@ namespace Pistachio
 
 	void EditorLayer::OnImGuiRender()
 	{
-		// PA_PROFILE_FUNCTION()
-		
 		static bool dockspaceOpen = true;
 		static bool opt_fullscreen_persistant = true;
 		bool opt_fullscreen = opt_fullscreen_persistant;
@@ -222,8 +215,6 @@ namespace Pistachio
 
 	void EditorLayer::OnEvent(Event& e)
 	{
-		// PA_PROFILE_FUNCTION()
-    
 		m_CameraController.OnEvent(e);
 	}
 }

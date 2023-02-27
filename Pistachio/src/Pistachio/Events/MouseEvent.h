@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Pistachio/Events/Event.h"
-#include "Pistachio/Core/Input.h"
+#include "Pistachio/Core/MouseCodes.h"
 
 namespace Pistachio {
 
@@ -56,7 +56,7 @@ namespace Pistachio {
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
 	protected:
-		MouseButtonEvent(MouseCode button)
+		MouseButtonEvent(const MouseCode button)
 			: m_Button(button) {}
 
 		MouseCode m_Button;
@@ -65,7 +65,7 @@ namespace Pistachio {
 	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonPressedEvent(MouseCode button)
+		MouseButtonPressedEvent(const MouseCode button)
 			: MouseButtonEvent(button) {}
 
 		std::string ToString() const override
@@ -81,7 +81,7 @@ namespace Pistachio {
 	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonReleasedEvent(MouseCode button)
+		MouseButtonReleasedEvent(const MouseCode button)
 			: MouseButtonEvent(button) {}
 
 		std::string ToString() const override

@@ -239,7 +239,7 @@ namespace Pistachio {
 
 		for(uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 		{
-			if(*s_Data.TextureSlots[i].get() == *texture.get())
+			if(*s_Data.TextureSlots[i] == *texture)
 			{
 				textureIndex = (float)i;
 				break;

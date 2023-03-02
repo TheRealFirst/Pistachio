@@ -7,6 +7,7 @@
 #include "Pistachio/Core/Application.h"
 #include "Pistachio/Core/Layer.h"
 #include "Pistachio/Core/Log.h"
+#include "Pistachio/Core/Assert.h"
 
 #include "Pistachio/Core/Timestep.h"
 

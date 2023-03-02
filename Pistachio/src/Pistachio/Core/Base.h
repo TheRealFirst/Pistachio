@@ -18,13 +18,8 @@
 	#define PA_DEBUGBREAK()
 #endif
 
-#ifdef PA_ENABLE_ASSERTS
-	#define PA_ASSERT(x, ...) { if(!(x)) { PA_ERROR("Assertion Failed: {0}", __VA_ARGS__); PA_DEBUGBREAK(); } }
-	#define PA_CORE_ASSERT(x, ...) { if(!(x)) { PA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); PA_DEBUGBREAK(); } }
-#else
-	#define PA_ASSERT(x, ...)
-	#define PA_CORE_ASSERT(x, ...)
-#endif
+#define PA_EXPAND_MACRO(x) x
+#define PA_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -48,3 +43,6 @@ namespace Pistachio
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 }
+
+#include "Pistachio/Core/Log.h"
+#include "Pistachio/Core/Assert.h"

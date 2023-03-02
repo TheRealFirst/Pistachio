@@ -150,10 +150,8 @@ namespace Pistachio {
 		Flush();
 	}
 
-	void Renderer2D::FlushAndReset()
+	void Renderer2D::StartBatch()
 	{
-		EndScene();
-
 		s_Data.QuadIndexCount = 0;
 		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
 
@@ -171,6 +169,13 @@ namespace Pistachio {
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
 		s_Data.Stats.DrawCalls++;
 	}
+
+	void Renderer2D::NextBatch()
+	{
+		Flush();
+		StartBatch();
+	}
+
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
 	{
@@ -209,7 +214,7 @@ namespace Pistachio {
 		const float tilingFactor = 1.0f;
 
 		if(s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
-			FlushAndReset();
+			NextBatch();
 
 		for (size_t i = 0; i < quadVertexCount; i++)
 		{
@@ -233,7 +238,7 @@ namespace Pistachio {
 		constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
 
 		if(s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
-			FlushAndReset();
+			NextBatch();
 
 		float textureIndex = 0.0f;
 
@@ -249,7 +254,7 @@ namespace Pistachio {
 		if(textureIndex == 0.0f)
 		{
 			if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
-				FlushAndReset();
+				NextBatch();
 			
 			textureIndex = (float)s_Data.TextureSlotIndex;
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;

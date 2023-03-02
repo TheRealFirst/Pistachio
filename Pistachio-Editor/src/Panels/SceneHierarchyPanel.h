@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "Pistachio/Core/Base.h"
-#include "Pistachio/Core/Log.h"
 #include "Pistachio/Scene/Scene.h"
 #include "Pistachio/Scene/Entity.h"
 

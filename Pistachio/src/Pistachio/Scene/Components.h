@@ -48,7 +48,7 @@ namespace Pistachio
     struct CameraComponent
     {
         SceneCamera Camera;
-        bool Primary = false;
+        bool Primary = true;
         bool FixedAspectRatio = false;
 
         CameraComponent() = default;

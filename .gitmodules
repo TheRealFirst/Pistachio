@@ -14,3 +14,6 @@
 	path = Pistachio/vendor/imgui
 	url = ../../TheRealFirst/imgui.git
 	branch = docking
+[submodule "Pistachio/vendor/yaml-cpp"]
+	path = Pistachio/vendor/yaml-cpp
+	url = https://github.com/TheRealFirst/yaml-cpp

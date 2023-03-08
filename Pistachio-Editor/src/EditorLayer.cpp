@@ -4,6 +4,7 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "glm/gtx/transform.hpp"
 #include "Pistachio/Scene/SceneSerializer.h"
+#include "Pistachio/Utils/PlatformUtils.h"
 
 namespace Pistachio
 {
@@ -21,55 +22,6 @@ namespace Pistachio
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
 		m_ActiveScene = CreateRef<Scene>();
-
-#if 0
-		// Entity
-		m_SquareEntity = m_ActiveScene->CreateEntity("Green Square");
-		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
-
-		auto redSquare = m_ActiveScene->CreateEntity("Red Square");
-		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{1.0f, 0.0f, 0.0f, 1.0f});
-
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera A");
-		m_CameraEntity.AddComponent<CameraComponent>().Primary = true;
-		
-		m_SecondCamera = m_ActiveScene->CreateEntity("Camera B");
-		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
-		cc.Primary = false;
-		cc.Camera.SetProjectionType(SceneCamera::ProjectionType::Perspective);
-
-		class CameraController : public ScriptableEntity
-		{
-		public:
-			void OnCreate()
-			{
-				auto& translation = GetComponent<TransformComponent>().Translation;
-				translation.x = rand() % 10 - 5.0f;
-			}
-
-			void OnDestroy()
-			{
-			}
-
-			void OnUpdate(Timestep ts)
-			{
-				auto& translation = GetComponent<TransformComponent>().Translation;
-				float speed = 5.0f;
-
-				if(Input::IsKeyPressed(Key::A))
-					translation.x -= speed * ts;
-				else if(Input::IsKeyPressed(Key::D))
-					translation.x += speed * ts;
-				if(Input::IsKeyPressed(Key::W))
-					translation.y += speed * ts;
-				else if(Input::IsKeyPressed(Key::S))
-					translation.y -= speed * ts;
-			}
-		};
-		
-		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-#endif
 		
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
@@ -166,17 +118,19 @@ namespace Pistachio
 				// Disabling fullscreen would allow the window to be moved to the front of other windows, 
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
-
-				if(ImGui::MenuItem("Serialize"))
+				if(ImGui::MenuItem("New", "Ctrl+N"))
 				{
-					SceneSerializer serializer(m_ActiveScene);
-					serializer.Serialize("assets/scenes/Example.pproj");
+					NewScene();
 				}
 
-				if(ImGui::MenuItem("Deserialize"))
+				if(ImGui::MenuItem("Open...", "Ctrl+O"))
 				{
-					SceneSerializer serializer(m_ActiveScene);
-					serializer.Deserialize("assets/scenes/Example.pproj");
+					OpenScene();
+				}
+
+				if(ImGui::MenuItem("Save as...",  "Ctrl+Shift+S"))
+				{
+					SaveSceneAs();
 				}
 
 				if(ImGui::MenuItem("Preferences"))
@@ -190,7 +144,10 @@ namespace Pistachio
 					// 	ImGui::End();
 					// }
 				}
-				if (ImGui::MenuItem("Exit")) Application::Get().Close();
+
+				ImGui::Separator();
+				
+				if (ImGui::MenuItem("Exit", "Ctrl+W")) CloseApplication();
 				ImGui::EndMenu();
 			}
 
@@ -231,5 +188,87 @@ namespace Pistachio
 	void EditorLayer::OnEvent(Event& e)
 	{
 		m_CameraController.OnEvent(e);
+
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<KeyPressedEvent>(PA_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+	}
+
+	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
+	{
+		if (e.GetRepeatCount() > 0)
+			return false;
+
+		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
+		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
+		switch (e.GetKeyCode())
+		{
+		case Key::N:
+			{
+				if (control)
+					NewScene();
+
+				break;
+			}
+		case Key::O:
+			{
+				if (control)
+					OpenScene();
+
+				break;
+			}
+		case Key::S:
+			{
+				if (control && shift)
+					SaveSceneAs();
+
+				break;
+			}
+		case Key::W:
+			{
+				if(control)
+				{
+					CloseApplication();
+				}
+				break;
+			}
+			break;
+			
+		}
+	}
+
+	void EditorLayer::NewScene()
+	{
+		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+	}
+
+	void EditorLayer::OpenScene()
+	{
+		std::optional<std::string> filepath = FileDialogs::OpenFile("Pistachio Scene (*.pist)\0*.pist\0");
+		if (filepath)
+		{
+			m_ActiveScene = CreateRef<Scene>();
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+						
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Deserialize(*filepath);
+		}
+	}
+
+	void EditorLayer::SaveSceneAs()
+	{
+		std::optional<std::string> filepath = FileDialogs::SaveFile("Pistachio Scene (*.pist)\0*.pist\0");
+		if (filepath)
+		{
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Serialize(*filepath);
+		}
+	}
+
+	void EditorLayer::CloseApplication()
+	{
+		Application::Get().Close();
 	}
 }

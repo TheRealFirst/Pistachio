@@ -17,3 +17,6 @@
 [submodule "Pistachio/vendor/yaml-cpp"]
 	path = Pistachio/vendor/yaml-cpp
 	url = https://github.com/TheRealFirst/yaml-cpp
+[submodule "Pistachio/vendor/ImGuizmo"]
+	path = Pistachio/vendor/ImGuizmo
+	url = https://github.com/TheRealFirst/ImGuizmo

@@ -19,7 +19,8 @@ project "Pistachio-Editor"
 		"%{wks.location}/Pistachio/src",
 		"%{wks.location}/Pistachio/vendor",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}",
 	}
 
 	links

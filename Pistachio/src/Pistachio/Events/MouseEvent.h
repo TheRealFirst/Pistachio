@@ -2,6 +2,7 @@
 
 #include "Pistachio/Events/Event.h"
 #include "Pistachio/Core/MouseCodes.h"
+#include "papch.h"
 
 namespace Pistachio {
 

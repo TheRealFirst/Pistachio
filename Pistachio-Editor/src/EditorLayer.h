@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Pistachio.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Pistachio/Renderer/EditorCamera.h"
 
 namespace Pistachio
 {
@@ -24,13 +25,11 @@ namespace Pistachio
     	void SaveSceneAs();
     	void CloseApplication();
     private:
-        OrthographicCameraController m_CameraController;
         Ref<Framebuffer> m_Framebuffer;
 
+    	EditorCamera m_EditorCamera;
+
         Ref<Scene> m_ActiveScene;
-        Entity m_SquareEntity;
-        Entity m_CameraEntity;
-        Entity m_SecondCamera;
 
         Ref<Texture2D> m_Texture;
 

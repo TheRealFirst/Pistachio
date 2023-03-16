@@ -59,6 +59,9 @@ namespace Pistachio
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
+
+		// Clear entity ID attachment to -1
+		m_Framebuffer->ClearAttachment(1, -1);
 		
 		// Update scene
 		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
@@ -75,7 +78,6 @@ namespace Pistachio
 		if(mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
 		{
 			int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
-			PA_TRACE("Pixel Data = {0}", pixelData);
 		}
 		
 		m_Framebuffer->UnBind();

@@ -30,6 +30,7 @@ namespace Pistachio
     	EditorCamera m_EditorCamera;
 
         Ref<Scene> m_ActiveScene;
+    	Entity m_HoveredEntity;
 
         Ref<Texture2D> m_Texture;
 

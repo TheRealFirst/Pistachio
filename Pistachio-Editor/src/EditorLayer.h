@@ -19,6 +19,7 @@ namespace Pistachio
         virtual void OnEvent(Event& event) override;
     private:
     	bool OnKeyPressed(KeyPressedEvent& e);
+    	bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
     	void NewScene();
     	void OpenScene();
@@ -30,6 +31,7 @@ namespace Pistachio
     	EditorCamera m_EditorCamera;
 
         Ref<Scene> m_ActiveScene;
+    	Entity m_HoveredEntity;
 
         Ref<Texture2D> m_Texture;
 

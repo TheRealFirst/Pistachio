@@ -30,11 +30,10 @@ namespace Pistachio
 
     void SceneCamera::SetViewportSize(uint32_t width, uint32_t height)
     {
-    	if(width != 0 || height != 0)
-    	{
-	        m_AspectRatio = (float)width / (float)height;
-	        RecalculateProjection();
-    	}
+    	PA_CORE_ASSERT(width > 0 && height > 0, "Viewport Size cant be 0, from SceneCamera.cpp")
+        m_AspectRatio = (float)width / (float)height;
+        RecalculateProjection();
+    	
     }
 
     void SceneCamera::RecalculateProjection()

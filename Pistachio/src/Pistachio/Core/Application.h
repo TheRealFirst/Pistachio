@@ -15,10 +15,22 @@ int main(int argc, char** argv);
 
 namespace Pistachio 
 {
+	struct ApplicationCommandLineArgs
+	{
+		int Count = 0;
+		char** Args = nullptr;
+
+		const char* operator[](int index) const
+		{
+			PA_CORE_ASSERT(index < Count)
+			return Args[index];
+		}
+	};
+	
 	class Application
 	{
 	public:
-		Application(const std::string& name = "Pistachio Engine");
+		Application(const std::string& name = "Pistachio Engine", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -36,12 +48,15 @@ namespace Pistachio
 		{
 			return *s_Instance;
 		}
+
+		ApplicationCommandLineArgs GetCommandLineArgs() {return m_CommandLineArgs;}
 	private:
 		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:
+		ApplicationCommandLineArgs m_CommandLineArgs;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
@@ -54,5 +69,5 @@ namespace Pistachio
 	};
 
 	// To be defined in CLIENT
-	Application* CreateApplication();
+	Application* CreateApplication(ApplicationCommandLineArgs args);
 }

@@ -7,14 +7,15 @@ namespace Pistachio
 {
 	class PistachioEditor : public Application {
 	public:
-		PistachioEditor() : Application("Pistachio Editor")
+		PistachioEditor(ApplicationCommandLineArgs args)
+			: Application("Pistachio Editor", args)
 		{
 			PushLayer(new EditorLayer());
 		}
 		~PistachioEditor() = default;
 	};
 
-	Application* CreateApplication() {
-		return new PistachioEditor();
+	Application* CreateApplication(ApplicationCommandLineArgs args) {
+		return new PistachioEditor(args);
 	}
 }
